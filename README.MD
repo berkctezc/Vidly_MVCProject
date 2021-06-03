@@ -74,6 +74,12 @@ public ActionResult Test()
     }		
 ```
 
+### Parameter Sources
+
+* **Embedded in the URL:** /movies/edit/1 
+* In the query string: /movies/edit?id=1
+* In the form data
+
 ### Routing
 
 - **Convention based routing:** in Routeconfig.cs
@@ -96,7 +102,7 @@ public ActionResult Test()
     }
   ```
 
-### Passing Data to View
+### Passing Data to Views
 
 * in controller
 
@@ -185,3 +191,7 @@ public class MoviesController : Controller
    }
 </ul>
 ```
+
+### Partial Views
+
+Create View in views as view and select partial view. Usage in another views`@Html.Partial("_PartialView", Model.Data)`
