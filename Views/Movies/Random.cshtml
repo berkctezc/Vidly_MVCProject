@@ -4,8 +4,21 @@
     ViewBag.Title = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{
+    var className = Model.Customers.Count > 0 ? "popular" : null;
+}
 
-<h2>@Model.Movie.Name</h2>  <!-- preffered way -->
-<p>@Model.Customers[1].Name</p>  <!-- preffered way -->
+<h2 class="@className">@Model.Movie.Name</h2>  <!-- preferred way -->
+@if (Model.Customers.Count == 0)
+{
+    <p>No one has rented this movie before.</p>
+}
+
+<ul>
+@foreach (var customer in Model.Customers)
+   {
+       <li>@customer.Name</li>
+   }
+</ul>
 <h2>@( ((Movie) ViewData["Movie"]).Name)</h2> <!-- ugly way / dont use -->
 <h2>@ViewBag.Movie.Name</h2> <!-- casted at runtime / not safe -->

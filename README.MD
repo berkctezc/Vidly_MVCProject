@@ -140,6 +140,8 @@ public class MoviesController : Controller
     public ActionResult Random()
     {
         //adding data
+        var movie = new Movie() { Name = "Shrek!" };
+        
         var customers = new List<Customer>
         {
             new Customer {Name = "cust1"},
@@ -156,3 +158,30 @@ public class MoviesController : Controller
     }
 ```
 
+### Razor Syntax 
+
+```cs
+@*
+    this is a razor comment
+*@
+@{
+    //multiple lines
+    //when razor sees html prints it and when razor sees csharp interprets it
+}
+@{
+    var className = Model.Customers.Count > 0 ? "popular" : null;
+}
+ 
+<h2 class="@className">@Model.Movie.Name</h2>  <!-- preferred way -->
+@if (Model.Customers.Count == 0)
+{
+    <p>No one has rented this movie before.</p>
+}
+ 
+<ul>
+@foreach (var customer in Model.Customers)
+   {
+       <li>@customer.Name</li>
+   }
+</ul>
+```
