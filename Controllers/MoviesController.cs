@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using System.Web.Mvc;
 using Vidly_MVCProject.Models;
 using Vidly_MVCProject.ViewModel;
@@ -31,9 +30,7 @@ namespace Vidly_MVCProject.Controllers
             ViewData["Movie"] = movie;
             ViewBag.Movie = movie;
 
-
             return View(viewModel);
-
 
             //return Content("Hello World!");
             //return HttpNotFound();

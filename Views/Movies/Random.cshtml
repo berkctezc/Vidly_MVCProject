@@ -15,10 +15,10 @@
 }
 
 <ul>
-@foreach (var customer in Model.Customers)
-   {
-       <li>@customer.Name</li>
-   }
+    @foreach (var customer in Model.Customers)
+    {
+        <li>@customer.Name</li>
+    }
 </ul>
 <h2>@( ((Movie) ViewData["Movie"]).Name)</h2> <!-- ugly way / dont use -->
 <h2>@ViewBag.Movie.Name</h2> <!-- casted at runtime / not safe -->

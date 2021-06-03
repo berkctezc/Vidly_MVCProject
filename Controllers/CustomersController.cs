@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Vidly_MVCProject.Models;
 
@@ -13,10 +11,8 @@ namespace Vidly_MVCProject.Controllers
         {
             var customers = GetCustomers();
 
-
             return View(customers);
         }
-
 
         public ActionResult Details(int id)
         {
