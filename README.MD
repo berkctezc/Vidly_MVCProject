@@ -98,7 +98,7 @@ public ActionResult Test()
 
 ### Passing Data to View
 
-in controller
+* in controller
 
 ```c#
 public ActionResult Test()
@@ -112,11 +112,47 @@ public ActionResult Test()
 }
 ```
 
-in view
+* in view
 
 ```html
 <h2>@Model.Name</h2> <!-- preffered way -->
 <h2>@( ((Movie) ViewData["Movie"]).Name)</h2> <!-- ugly way / dont use -->
 <h2>@ViewBag.Movie.Name</h2> <!-- casted at runtime / not safe -->
+```
+
+* **ViewModels**: consists multiple models. 
+* in ViewModel folder
+
+```csharp
+public class RandomMovieViewModel
+{
+    public Movie Movie { get; set; }
+    public List<Customer> Customers { get; set; }
+}
+```
+
+* in controller
+
+```cs
+public class MoviesController : Controller
+{
+    // GET: Movies
+    public ActionResult Random()
+    {
+        //adding data
+        var customers = new List<Customer>
+        {
+            new Customer {Name = "cust1"},
+            new Customer {Name = "cust2"}
+        };
+ 		//filing viewmodel with data
+        var viewModel = new RandomMovieViewModel()
+        {
+            Movie = movie, 
+            Customers = customers
+        };
+
+        return View(viewModel);
+    }
 ```
 

@@ -1,10 +1,11 @@
 ﻿@using Vidly_MVCProject.Models
-@model Vidly_MVCProject.Models.Movie
+@model Vidly_MVCProject.ViewModel.RandomMovieViewModel
 @{
     ViewBag.Title = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Name</h2>  <!-- preffered way -->
+<h2>@Model.Movie.Name</h2>  <!-- preffered way -->
+<p>@Model.Customers[1].Name</p>  <!-- preffered way -->
 <h2>@( ((Movie) ViewData["Movie"]).Name)</h2> <!-- ugly way / dont use -->
 <h2>@ViewBag.Movie.Name</h2> <!-- casted at runtime / not safe -->
