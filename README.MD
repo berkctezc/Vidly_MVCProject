@@ -205,3 +205,12 @@ Create View in views as view and select partial view. Usage in another views`@Ht
 ![ex](README_assets\sec2ex-3.jpg)
 
 ![ex](README_assets\sec2ex-4.jpg)
+
+## Working with Data
+
+**Entity Framework:** an ORM that maps data in a relational database to our objects by using context file
+
+**Linq:** Method like SQL queries
+
+**Workflows:** DB First, Code First
+

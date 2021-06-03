@@ -50,7 +50,13 @@ namespace Vidly_MVCProject.Controllers
 
         public ActionResult Index(int? pageIndex, string sortBy)
         {
-            var movies = new List<Movie>
+            var movies = GetMovies();
+            return View(movies);
+        }
+
+        public List<Movie> GetMovies()
+        {
+            return new List<Movie>
             {
                 new Movie {Name = "Citizen Kane"},
                 new Movie {Name = "Rear Window"},
@@ -58,7 +64,6 @@ namespace Vidly_MVCProject.Controllers
                 new Movie {Name = "Taxi Driver"},
                 new Movie {Name = "Paths of Glory"}
             };
-            return View(movies);
         }
 
         public ActionResult Parameters(int? pageIndex, string sortBy)
