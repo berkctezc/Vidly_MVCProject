@@ -20,47 +20,18 @@ This is an MVC app developed with .NET Framework for learning purposes
 
 **Action Results**
 
-<table>
-    <tr>
-    	<th>Type</th>
-    	<th>Helper Method</th>
-    </tr>
-    <tr>
-		<td>ViewResult</td>
-        <td>View()</td>
-    </tr>
-    <tr>
-		<td>PartialViewResult</td>
-        <td>PartialView()</td>
-    </tr>
-    <tr>
-		<td>ContentResult</td>
-        <td>Content()</td>
-    </tr>
-    <tr>
-		<td>RedirectResult</td>
-        <td>Redirect()</td>
-    </tr>
-        <tr>
-		<td>RedirectToRouteResult</td>
-        <td>RedirectToAction()</td>
-    </tr>
-        <tr>
-		<td>JsonResult</td>
-        <td>Json()</td>
-    </tr>
-        <tr>
-		<td>FileResult</td>
-        <td>File()</td>
-    </tr>
-        <tr>
-		<td>HttpNotFoundResult</td>
-        <td>HttpNotFound()</td>
-    </tr>
-            <tr>
-		<td>EmptyResult</td>
-        <td>-</td>
-    </tr>
+| Type                  | Helper Method      |
+| --------------------- | ------------------ |
+| ViewResult            | View()             |
+| PartialViewResult     | PartialView()      |
+| ContentResult         | Content()          |
+| RedirectResult        | Redirect()         |
+| RedirectToRouteResult | RedirectToAction() |
+| JsonResult            | Json()             |
+| FileResult            | File()             |
+| HttpNotFoundResult    | HttpNotFound()     |
+| EmptyResult           | \-                 |
+
 some examples
 
 ```csharp
@@ -198,13 +169,13 @@ Create View in views as view and select partial view. Usage in another views`@Ht
 
 ### Section Exercise
 
-![ex](README_assets\sec2ex-1.jpg)
+![ex](README_assets/sec2ex-1.jpg)
 
-![ex](README_assets\sec2ex-2.jpg)
+![ex](README_assets/sec2ex-2.jpg)
 
-![ex](README_assets\sec2ex-3.jpg)
+![ex](README_assets/sec2ex-3.jpg)
 
-![ex](README_assets\sec2ex-4.jpg)
+![ex](README_assets/sec2ex-4.jpg)
 
 ## Working with Data
 
