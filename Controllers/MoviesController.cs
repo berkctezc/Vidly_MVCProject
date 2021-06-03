@@ -23,7 +23,8 @@ namespace Vidly_MVCProject.Controllers
             //filling viewmodel with data
             var viewModel = new RandomMovieViewModel()
             {
-                Movie = movie, Customers = customers
+                Movie = movie,
+                Customers = customers
             };
 
             //passing data do view
@@ -48,6 +49,19 @@ namespace Vidly_MVCProject.Controllers
         }
 
         public ActionResult Index(int? pageIndex, string sortBy)
+        {
+            var movies = new List<Movie>
+            {
+                new Movie {Name = "Citizen Kane"},
+                new Movie {Name = "Rear Window"},
+                new Movie {Name = "High and Low"},
+                new Movie {Name = "Taxi Driver"},
+                new Movie {Name = "Paths of Glory"}
+            };
+            return View(movies);
+        }
+
+        public ActionResult Parameters(int? pageIndex, string sortBy)
         {
             if (!pageIndex.HasValue)
                 pageIndex = 1;

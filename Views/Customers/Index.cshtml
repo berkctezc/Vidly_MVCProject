@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Customers</h1>
+@{
+    if (Model.Count !=0)
+    {
+
+
+        <table class="table table-borderless">
+            <tr class="danger">
+                <th>Customers</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="/Customers/Details/@item.Id">
+                            @item.Name - @item.Id
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+  else
+  {
+      <p>We don't have any customers yet.</p>
+  }
+}

@@ -1,7 +1,7 @@
 ﻿# DOCUMENTATION
 This is an MVC app developed with .NET Framework for learning purposes
 
-## File Structure
+## 1 - File Structure
 * App_Start: Configuration Files. Loads at application start
 * Content: CSS,images, client side assets
 * Controllers: Operations for handling requests
@@ -14,7 +14,7 @@ This is an MVC app developed with .NET Framework for learning purposes
 * Startup.cs: New approach for startup configurations and logic (Net Core and beyond)
 * Web.config: Configuration for application like DB connection strings,app settings for defining configuration settings
 
-## Fundamentals
+## 2 - Fundamentals
 
 ### Controller Action Structures
 
@@ -195,3 +195,13 @@ public class MoviesController : Controller
 ### Partial Views
 
 Create View in views as view and select partial view. Usage in another views`@Html.Partial("_PartialView", Model.Data)`
+
+### Section Exercise
+
+![ex](README_assets\sec2ex-1.jpg)
+
+![ex](README_assets\sec2ex-2.jpg)
+
+![ex](README_assets\sec2ex-3.jpg)
+
+![ex](README_assets\sec2ex-4.jpg)
