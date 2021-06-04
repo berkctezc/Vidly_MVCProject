@@ -1,4 +1,7 @@
-﻿@{
+﻿@using Vidly_MVCProject.Models
+@model List<Customer>
+
+@{
     ViewBag.Title = "Customers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -17,7 +20,7 @@
             {
                 <tr>
                     <td>
-                        <a href="/Customers/Details/@item.Id">
+                        <a href="/Customers/Edit/@item.Id">
                             @item.Name
                         </a>
                     </td>

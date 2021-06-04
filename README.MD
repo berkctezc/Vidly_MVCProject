@@ -1,4 +1,4 @@
-﻿This is an MVC app developed with .NET Framework for learning purposes
+This is an MVC app developed with .NET Framework for learning purposes
 
 ## 1 - File Structure
 * App_Start: Configuration Files. Loads at application start
@@ -292,3 +292,59 @@ in view:
     @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes,"Id","Name"),"Select Membership Type", new { @class = "form-control" })
 </div>
 ```
+
+#### Model Binding
+
+in controller:
+
+```cs
+[HttpPost]
+public ActionResult Create(Customer customer)
+{
+    //...
+    return View();
+}
+```
+
+in view make sure of action name and controller name
+
+```cs
+(Html.BeginForm(actionName: "Create", controllerName: "Customers"))
+//...
+```
+
+#### Saving Data
+
+```cs
+[HttpPost]
+ public ActionResult Create(Customer customer)
+ {
+     _context.Customers.Add(customer);
+     _context.SaveChanges();
+ 
+     return RedirectToAction("Index","Customers");
+ }
+```
+
+#### Edit Form
+
+fill data with corresponding item from id in controller:
+
+```cs
+     public ActionResult Edit(int id)
+    {
+        var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+ 
+        if (customer==null)
+            return HttpNotFound();
+ 
+        var viewModel = new CustomerFormViewModel()
+        {
+            Customer = customer,
+            MembershipTypes = _context.MembershipTypes.ToList()
+        };
+        return View("CustomerForm", viewModel);
+    }
+}
+```
+
