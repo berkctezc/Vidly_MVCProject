@@ -194,3 +194,27 @@ Create View in views as view and select partial view. Usage in another views`@Ht
 DbSet<Domain Class> to table name in Context : DbContext class in package manager console `PM > enable-migrations` , `PM> add-migration migrationName`, `PM> update-database`
 
 **Seeding db:** put sql commands in a migrations up() method
+
+### Querying Objects
+
+in controller
+
+```csharp
+private Context _context;
+public CustomersController()
+      {
+          _context = new Context();
+      }
+//...
+public ActionResult Index()
+	{
+    var customers = _context.Customers.ToList();
+    return View(customers);
+	}
+//...
+public ActionResult Details(int id)
+	{
+    var customer = _context.Customers.Single(c => c.Id == id);
+    return View(customer);
+	}		
+```
