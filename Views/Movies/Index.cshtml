@@ -8,12 +8,18 @@
 <table class="table table-borderless">
     <tr class="danger">
         <th>Movie List</th>
+        <th>Genre</th>
     </tr>
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @item.Name
+                <a href="/Movies/details/@item.Id">
+                    @item.Name
+                </a>
+            </td>
+            <td>
+                @item.Genre.Name
             </td>
         </tr>
     }

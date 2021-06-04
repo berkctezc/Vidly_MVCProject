@@ -224,6 +224,13 @@ public ActionResult Details(int id)
 
 ### Section Exercise
 
-1. <img src="README_assets/sec3-ex1.jpg" alt="ex" style="zoom:70%;" />
-2. <img src="README_assets/sec3-ex2.jpg" alt="ex" style="zoom:70%;" />
-   <img src="README_assets/sec3-ex2-2.jpg" alt="ex" style="zoom:70%;" />
+1. <img src="README_assets/sec3-ex1.jpg" alt="ex" style="zoom: 67%;" />
+
+2. <img src="README_assets/sec3-ex2.jpg" alt="ex" style="zoom: 67%;" />
+
+   <img src="README_assets/sec3-ex2-2.jpg" alt="ex" style="zoom: 67%;" />
+
+3. <img src="README_assets/sec3-ex3.jpg" alt="ex" style="zoom: 67%;" />
+    
+
+   <img src="README_assets/sec3-ex3-2.jpg" alt="ex" style="zoom: 67%;" />

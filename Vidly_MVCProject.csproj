@@ -68,6 +68,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -182,9 +183,22 @@
     <Compile Include="Migrations\202106041924312_addBirthdateToCustomer.designer.cs">
       <DependentUpon>202106041924312_addBirthdateToCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106041940063_addedGenresAndMembershipTypesToContext.cs" />
+    <Compile Include="Migrations\202106041940063_addedGenresAndMembershipTypesToContext.designer.cs">
+      <DependentUpon>202106041940063_addedGenresAndMembershipTypesToContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106041944471_addedMorePropertiesToMovie.cs" />
+    <Compile Include="Migrations\202106041944471_addedMorePropertiesToMovie.designer.cs">
+      <DependentUpon>202106041944471_addedMorePropertiesToMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106041945430_PopulateGenres.cs" />
+    <Compile Include="Migrations\202106041945430_PopulateGenres.designer.cs">
+      <DependentUpon>202106041945430_PopulateGenres.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -247,6 +261,7 @@
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -289,6 +304,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106041924312_addBirthdateToCustomer.resx">
       <DependentUpon>202106041924312_addBirthdateToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106041940063_addedGenresAndMembershipTypesToContext.resx">
+      <DependentUpon>202106041940063_addedGenresAndMembershipTypesToContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106041944471_addedMorePropertiesToMovie.resx">
+      <DependentUpon>202106041944471_addedMorePropertiesToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106041945430_PopulateGenres.resx">
+      <DependentUpon>202106041945430_PopulateGenres.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
