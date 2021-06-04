@@ -231,6 +231,64 @@ public ActionResult Details(int id)
    <img src="README_assets/sec3-ex2-2.jpg" alt="ex" style="zoom: 67%;" />
 
 3. <img src="README_assets/sec3-ex3.jpg" alt="ex" style="zoom: 67%;" />
-    
 
    <img src="README_assets/sec3-ex3-2.jpg" alt="ex" style="zoom: 67%;" />
+
+## 4 - Building Forms
+
+#### Markup
+
+in View:
+
+```csharp
+@using (Html.BeginForm(actionName: "Create", controllerName: "Customers"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m=>m.Name)
+        @Html.TextBoxFor(m=>m.Name,new {@class="form-control"})
+    </div>
+}
+```
+
+#### Labels
+
+in Model with data annotation:
+
+```csharp
+[Display(Name="Date of Birth")]
+public DateTime? Birthdate { get; set; }
+```
+
+or in view with `<label for="Birthdate">Date of Birth</label>`
+
+#### Dropdown Lists
+
+create viewmodel:
+
+```cs
+public class NewCustomerViewModel
+{
+    public IEnumerable<MembershipType> MembershipTypes { get; set; }
+    public Customer Customer { get; set; }
+}
+```
+
+in controller:
+
+```cs
+var membershipTypes = _context.MembershipTypes.ToList();
+ 
+var viewModel = new NewCustomerViewModel()
+{
+    MembershipTypes = membershipTypes
+};
+```
+
+in view:
+
+```html
+<div class="form-group">
+    @Html.LabelFor(m => m.Customer.MembershipTypeId)
+    @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes,"Id","Name"),"Select Membership Type", new { @class = "form-control" })
+</div>
+```
