@@ -177,11 +177,19 @@ Create View in views as view and select partial view. Usage in another views`@Ht
 
 ![ex](README_assets/sec2ex-4.jpg)
 
-## Working with Data
+## 3 - Working with Data
 
-**Entity Framework:** an ORM that maps data in a relational database to our objects by using context file
+* **Entity Framework:** an ORM that maps data in a relational database to our objects by using context file.
 
-**Linq:** Method like SQL queries
+* **Linq:** Method like SQL queries.
 
-**Workflows:** DB First, Code First
+* **Workflows:** Database First, Code First.
+
+* **DB First:** Design database tables first, later let EF generate domain classes according to tables.
+
+* **Code First:** Create domain classes first, later let EF generate database tables for us.
+
+### Code-first migrations
+
+DbSet<Domain Class> to table name in Context : DbContext class in package manager console `PM > enable-migrations` , `PM> add-migration migrationName`, `PM> update-database`
 
