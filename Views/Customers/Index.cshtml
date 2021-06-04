@@ -11,14 +11,18 @@
         <table class="table table-borderless">
             <tr class="danger">
                 <th>Customers</th>
+                <th>Discount Rate</th>
             </tr>
             @foreach (var item in Model)
             {
                 <tr>
                     <td>
                         <a href="/Customers/Details/@item.Id">
-                            @item.Name - @item.Id
+                            @item.Name
                         </a>
+                    </td>
+                    <td>
+                        @item.MembershipType.DiscountRate
                     </td>
                 </tr>
             }

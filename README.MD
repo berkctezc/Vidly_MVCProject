@@ -218,3 +218,7 @@ public ActionResult Details(int id)
     return View(customer);
 	}		
 ```
+
+### Eager Loading
+
+**load relational foreign table** : `_context.Customer.Include(c=>c.MembershipType).ToList();` 
