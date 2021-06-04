@@ -1,5 +1,4 @@
-﻿# DOCUMENTATION
-This is an MVC app developed with .NET Framework for learning purposes
+﻿This is an MVC app developed with .NET Framework for learning purposes
 
 ## 1 - File Structure
 * App_Start: Configuration Files. Loads at application start
@@ -169,13 +168,13 @@ Create View in views as view and select partial view. Usage in another views`@Ht
 
 ### Section Exercise
 
-![ex](README_assets/sec2ex-1.jpg)
+<img src="README_assets/sec2ex-1.jpg" alt="ex" style="zoom:67%;" />
 
-![ex](README_assets/sec2ex-2.jpg)
+<img src="README_assets/sec2ex-2.jpg" alt="ex" style="zoom:67%;" />
 
-![ex](README_assets/sec2ex-3.jpg)
+<img src="README_assets/sec2ex-3.jpg" alt="ex" style="zoom:67%;" />
 
-![ex](README_assets/sec2ex-4.jpg)
+<img src="README_assets/sec2ex-4.jpg" alt="ex" style="zoom:67%;" />
 
 ## 3 - Working with Data
 
@@ -222,3 +221,9 @@ public ActionResult Details(int id)
 ### Eager Loading
 
 **load relational foreign table** : `_context.Customer.Include(c=>c.MembershipType).ToList();` 
+
+### Section Exercise
+
+1. <img src="README_assets/sec3-ex1.jpg" alt="ex" style="zoom:70%;" />
+2. <img src="README_assets/sec3-ex2.jpg" alt="ex" style="zoom:70%;" />
+   <img src="README_assets/sec3-ex2-2.jpg" alt="ex" style="zoom:70%;" />
