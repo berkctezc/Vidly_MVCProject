@@ -41,7 +41,7 @@ public ActionResult Test()
 		return HttpNotFound();
 		return new EmptyResult();
 		return RedirectToAction("Index", "Home", new {page="1",sortBy="name"});
-    }		
+	}		
 ```
 
 ### Parameter Sources
@@ -56,10 +56,10 @@ public ActionResult Test()
 
 - ```c#
   routes.MapRoute(
-             "MoviesByReleaseDate", //name of route
-            "movies/released/{year}/{month}", //route url
-            new{controller="Movies",action="ByReleaseDate"}, //default corresponding controller and actions
-            new{year=@"2020|2021",month=@"\d{2}"}); //constraints for parameters
+			 "MoviesByReleaseDate", //name of route
+			"movies/released/{year}/{month}", //route url
+			new{controller="Movies",action="ByReleaseDate"}, //default corresponding controller and actions
+			new{year=@"2020|2021",month=@"\d{2}"}); //constraints for parameters
   ```
 
 - **Attribute routing**: in Routeconfig.cs add `routes.MapMvcAttributeRoutes();` Before controller use attribute `[Route("url template")]`. *Also constraints like min, max, minlength, maxlength, int, float, guid could be used.*
@@ -67,9 +67,9 @@ public ActionResult Test()
 - ```csharp
   [Route("movies/released/{year:regex(\\d{4}:range(1800,2021))}/{month:regex(\\d{2}:range(1,12))}")]
   public ActionResult ByReleaseDate(int year,int month)
-    {
-        return Content(year + "/" + month);
-    }
+	{
+		return Content(year + "/" + month);
+	}
   ```
 
 ### Passing Data to Views
@@ -79,12 +79,12 @@ public ActionResult Test()
 ```c#
 public ActionResult Test()
 	{
-    var movie = new Movie() { Name = "Shrek!" };
+	var movie = new Movie() { Name = "Shrek!" };
 	
-    ViewData["Movie"] = movie;
-    ViewBag.Movie = movie;
-    
-    return View(movie);
+	ViewData["Movie"] = movie;
+	ViewBag.Movie = movie;
+	
+	return View(movie);
 }
 ```
 
@@ -102,8 +102,8 @@ public ActionResult Test()
 ```csharp
 public class RandomMovieViewModel
 {
-    public Movie Movie { get; set; }
-    public List<Customer> Customers { get; set; }
+	public Movie Movie { get; set; }
+	public List<Customer> Customers { get; set; }
 }
 ```
 
@@ -112,52 +112,52 @@ public class RandomMovieViewModel
 ```cs
 public class MoviesController : Controller
 {
-    // GET: Movies
-    public ActionResult Random()
-    {
-        //adding data
-        var movie = new Movie() { Name = "Shrek!" };
-        
-        var customers = new List<Customer>
-        {
-            new Customer {Name = "cust1"},
-            new Customer {Name = "cust2"}
-        };
- 		//filing viewmodel with data
-        var viewModel = new RandomMovieViewModel()
-        {
-            Movie = movie, 
-            Customers = customers
-        };
+	// GET: Movies
+	public ActionResult Random()
+	{
+		//adding data
+		var movie = new Movie() { Name = "Shrek!" };
+		
+		var customers = new List<Customer>
+		{
+			new Customer {Name = "cust1"},
+			new Customer {Name = "cust2"}
+		};
+		//filing viewmodel with data
+		var viewModel = new RandomMovieViewModel()
+		{
+			Movie = movie, 
+			Customers = customers
+		};
 
-        return View(viewModel);
-    }
+		return View(viewModel);
+	}
 ```
 
 ### Razor Syntax 
 
 ```cs
 @*
-    this is a razor comment
+	this is a razor comment
 *@
 @{
-    //multiple lines
-    //when razor sees html prints it and when razor sees csharp interprets it
+	//multiple lines
+	//when razor sees html prints it and when razor sees csharp interprets it
 }
 @{
-    var className = Model.Customers.Count > 0 ? "popular" : null;
+	var className = Model.Customers.Count > 0 ? "popular" : null;
 }
  
 <h2 class="@className">@Model.Movie.Name</h2>  <!-- preferred way -->
 @if (Model.Customers.Count == 0)
 {
-    <p>No one has rented this movie before.</p>
+	<p>No one has rented this movie before.</p>
 }
  
 <ul>
 @foreach (var customer in Model.Customers)
    {
-       <li>@customer.Name</li>
+	   <li>@customer.Name</li>
    }
 </ul>
 ```
@@ -201,20 +201,20 @@ in controller
 ```csharp
 private Context _context;
 public CustomersController()
-      {
-          _context = new Context();
-      }
+	  {
+		  _context = new Context();
+	  }
 //...
 public ActionResult Index()
 	{
-    var customers = _context.Customers.ToList();
-    return View(customers);
+	var customers = _context.Customers.ToList();
+	return View(customers);
 	}
 //...
 public ActionResult Details(int id)
 	{
-    var customer = _context.Customers.Single(c => c.Id == id);
-    return View(customer);
+	var customer = _context.Customers.Single(c => c.Id == id);
+	return View(customer);
 	}		
 ```
 
@@ -243,10 +243,10 @@ in View:
 ```csharp
 @using (Html.BeginForm(actionName: "Create", controllerName: "Customers"))
 {
-    <div class="form-group">
-        @Html.LabelFor(m=>m.Name)
-        @Html.TextBoxFor(m=>m.Name,new {@class="form-control"})
-    </div>
+	<div class="form-group">
+		@Html.LabelFor(m=>m.Name)
+		@Html.TextBoxFor(m=>m.Name,new {@class="form-control"})
+	</div>
 }
 ```
 
@@ -268,8 +268,8 @@ create viewmodel:
 ```cs
 public class NewCustomerViewModel
 {
-    public IEnumerable<MembershipType> MembershipTypes { get; set; }
-    public Customer Customer { get; set; }
+	public IEnumerable<MembershipType> MembershipTypes { get; set; }
+	public Customer Customer { get; set; }
 }
 ```
 
@@ -280,7 +280,7 @@ var membershipTypes = _context.MembershipTypes.ToList();
  
 var viewModel = new NewCustomerViewModel()
 {
-    MembershipTypes = membershipTypes
+	MembershipTypes = membershipTypes
 };
 ```
 
@@ -288,8 +288,8 @@ in view:
 
 ```html
 <div class="form-group">
-    @Html.LabelFor(m => m.Customer.MembershipTypeId)
-    @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes,"Id","Name"),"Select Membership Type", new { @class = "form-control" })
+	@Html.LabelFor(m => m.Customer.MembershipTypeId)
+	@Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes,"Id","Name"),"Select Membership Type", new { @class = "form-control" })
 </div>
 ```
 
@@ -301,8 +301,8 @@ in controller:
 [HttpPost]
 public ActionResult Create(Customer customer)
 {
-    //...
-    return View();
+	//...
+	return View();
 }
 ```
 
@@ -319,10 +319,10 @@ in view make sure of action name and controller name
 [HttpPost]
  public ActionResult Create(Customer customer)
  {
-     _context.Customers.Add(customer);
-     _context.SaveChanges();
+	 _context.Customers.Add(customer);
+	 _context.SaveChanges();
  
-     return RedirectToAction("Index","Customers");
+	 return RedirectToAction("Index","Customers");
  }
 ```
 
@@ -331,20 +331,20 @@ in view make sure of action name and controller name
 fill data with corresponding item from id in controller:
 
 ```cs
-     public ActionResult Edit(int id)
-    {
-        var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+	 public ActionResult Edit(int id)
+	{
+		var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
  
-        if (customer==null)
-            return HttpNotFound();
+		if (customer==null)
+			return HttpNotFound();
  
-        var viewModel = new CustomerFormViewModel()
-        {
-            Customer = customer,
-            MembershipTypes = _context.MembershipTypes.ToList()
-        };
-        return View("CustomerForm", viewModel);
-    }
+		var viewModel = new CustomerFormViewModel()
+		{
+			Customer = customer,
+			MembershipTypes = _context.MembershipTypes.ToList()
+		};
+		return View("CustomerForm", viewModel);
+	}
 }
 ```
 
@@ -355,22 +355,22 @@ if not exists add, if exists update. in controller map the attributes
 ```cs
 public ActionResult Save(Customer customer)
 {
-    if(customer.Id==0) 
-        _context.Customers.Add(customer);
-    else
-    {
-        var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+	if(customer.Id==0) 
+		_context.Customers.Add(customer);
+	else
+	{
+		var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
  
  
-        customerInDb.Name = customer.Name;
-        customerInDb.Birthdate = customer.Birthdate;
-        customerInDb.MembershipTypeId = customer.MembershipTypeId;
-        customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
-    }
+		customerInDb.Name = customer.Name;
+		customerInDb.Birthdate = customer.Birthdate;
+		customerInDb.MembershipTypeId = customer.MembershipTypeId;
+		customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+	}
  
-    _context.SaveChanges();
+	_context.SaveChanges();
  
-    return RedirectToAction("Index","Customers");
+	return RedirectToAction("Index","Customers");
 }
 ```
 
