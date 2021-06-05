@@ -349,3 +349,34 @@ fill data with corresponding item from id in controller:
 ```
 
 #### Updating Data
+
+if not exists add, if exists update. in controller map the attributes
+
+```cs
+public ActionResult Save(Customer customer)
+{
+    if(customer.Id==0) 
+        _context.Customers.Add(customer);
+    else
+    {
+        var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+ 
+ 
+        customerInDb.Name = customer.Name;
+        customerInDb.Birthdate = customer.Birthdate;
+        customerInDb.MembershipTypeId = customer.MembershipTypeId;
+        customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+    }
+ 
+    _context.SaveChanges();
+ 
+    return RedirectToAction("Index","Customers");
+}
+```
+
+add the dependent id field in view as hidden:
+
+```html
+@Html.HiddenFor(m=>m.Customer.Id)
+```
+

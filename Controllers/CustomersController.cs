@@ -1,9 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
-using AutoMapper;
 using Vidly_MVCProject.Models;
-using Vidly_MVCProject.ViewModel;
+using Vidly_MVCProject.ViewModels;
 
 namespace Vidly_MVCProject.Controllers
 {
