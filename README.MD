@@ -477,3 +477,12 @@ step3: add message to view
 ```html
 @Html.ValidationMessageFor(m=>m.Customer.MembershipTypeId)
 ```
+
+#### Validation Summary
+
+```html
+@Html.ValidationSummary(true, "Please fix the following errors.")
+```
+
+excludePropertyErrors: true hides individual error listing
+message: the displayed message to user (could be stylized)
