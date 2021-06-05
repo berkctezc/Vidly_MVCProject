@@ -380,3 +380,10 @@ add the dependent id field in view as hidden:
 @Html.HiddenFor(m=>m.Customer.Id)
 ```
 
+#### Section Exercise
+
+<img src="README_assets/sec4-ex-1.jpg" alt="ex" style="zoom: 67%;" />
+
+<img src="README_assets/sec4-ex-2.jpg" alt="ex" style="zoom: 67%;" />
+
+<img src="README_assets/sec4-ex-3.jpg" alt="ex" style="zoom: 67%;" />
