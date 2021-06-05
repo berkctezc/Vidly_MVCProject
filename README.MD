@@ -486,3 +486,21 @@ step3: add message to view
 
 excludePropertyErrors: true hides individual error listing
 message: the displayed message to user (could be stylized)
+
+#### Client-side validation
+
+add this to forms on view
+```cs
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+```
+
+#### Anti-forgery Tokens
+
+in views use this html helper:
+```cs
+@Html.AntiForgeryToken()
+```
+
+and in controller action add this data annotation:

@@ -58,7 +58,7 @@ namespace Vidly_MVCProject.Controllers
             };
 
             return View("MovieForm", viewModel);
-        }       
+        }
         public ActionResult New()
         {
             var genres = _context.Genres.ToList();
@@ -72,11 +72,23 @@ namespace Vidly_MVCProject.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new MovieFormViewModel
+                {
+                    Movie=movie,
+                    Genres=_context.Genres.ToList()
+                };
+                return View("MovieForm", viewModel);
+            }
+
+
             if (movie.Id == 0)
             {
-                movie.DateAdded=DateTime.Now;
+                movie.DateAdded = DateTime.Now;
                 _context.Movies.Add(movie);
             }
             else
@@ -96,7 +108,7 @@ namespace Vidly_MVCProject.Controllers
 
         public ActionResult Index(int? pageIndex, string sortBy)
         {
-            var movies = _context.Movies.Include(m=>m.Genre).ToList();
+            var movies = _context.Movies.Include(m => m.Genre).ToList();
             return View(movies);
         }
 

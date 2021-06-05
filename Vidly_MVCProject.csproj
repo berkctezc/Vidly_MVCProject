@@ -194,6 +194,10 @@
     <Compile Include="Migrations\202106041945430_PopulateGenres.designer.cs">
       <DependentUpon>202106041945430_PopulateGenres.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106052008065_addedRequiredAnnotationsToMovie.cs" />
+    <Compile Include="Migrations\202106052008065_addedRequiredAnnotationsToMovie.designer.cs">
+      <DependentUpon>202106052008065_addedRequiredAnnotationsToMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Context.cs" />
@@ -432,6 +436,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106041945430_PopulateGenres.resx">
       <DependentUpon>202106041945430_PopulateGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106052008065_addedRequiredAnnotationsToMovie.resx">
+      <DependentUpon>202106052008065_addedRequiredAnnotationsToMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
