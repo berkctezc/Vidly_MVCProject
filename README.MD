@@ -387,3 +387,50 @@ add the dependent id field in view as hidden:
 <img src="README_assets/sec4-ex-2.jpg" alt="ex" style="zoom: 67%;" />
 
 <img src="README_assets/sec4-ex-3.jpg" alt="ex" style="zoom: 67%;" />
+
+## 5 - Implementing Validation
+
+#### Adding Validation
+
+step1: add annotations in model,
+step2: add validation control in controller. when not valid return form with users data
+
+```cs
+if (!ModelState.IsValid)
+{
+    var viewModel = new CustomerFormViewModel
+    {
+    Customer = customer,
+    MembershipTypes=_context.MembershipTypes.ToList()
+    };
+    return View("CustomerForm",viewModel);
+}
+```
+
+step3: add validation message to view:
+
+```html
+@Html.ValidationMessageFor(m=>m.Customer.Name)
+```
+
+**Styling Validation Error**
+access these classes and stylize:
+
+```css
+.field-validation-error{
+    color:red;
+}
+.input-validation-error{
+    border:2px red;
+}
+```
+
+**Overriding Validation Message**
+in model add this to required data annotation
+
+```cs
+[Required(ErrorMessage ="Please enter customer's name.")]
+ [StringLength(255)]
+ 
+ public string Name { get; set; }
+```
