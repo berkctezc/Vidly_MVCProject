@@ -434,3 +434,46 @@ in model add this to required data annotation
  
  public string Name { get; set; }
 ```
+
+#### Custom Validation
+
+step1: create a class that inherits ValidationAttribute (using System.ComponentModel.DataAnnotations)
+
+```cs
+public class Min18YearsIfAMember : ValidationAttribute
+   {
+       protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+       {
+           var customer = (Customer)validationContext.ObjectInstance;
+ 
+           if (customer.MembershipTypeId==0|| customer.MembershipTypeId == 1)
+           {
+               return ValidationResult.Success;
+           }
+           if (customer.Birthdate == null)
+           {
+               return new ValidationResult("Birthdate is required.");
+           }
+ 
+           var age = DateTime.Today.Year - customer.Birthdate.Value.Year;
+ 
+           return (age >= 18) 
+               ? ValidationResult.Success 
+               : new ValidationResult("Customer should be at least 18 years old to go on a membership.")
+       }
+   }
+```
+
+step2: add data annotation to model
+
+```cs
+[Display(Name = "Membership Type")]
+[Min18YearsIfAMember]
+public byte MembershipTypeId { get; set; }
+```
+
+step3: add message to view
+
+```html
+@Html.ValidationMessageFor(m=>m.Customer.MembershipTypeId)
+```

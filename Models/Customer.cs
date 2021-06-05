@@ -20,6 +20,7 @@ namespace Vidly_MVCProject.Models
         public MembershipType MembershipType { get; set; }
         
         [Display(Name = "Membership Type")]
+        [Min18YearsIfAMember]
         public byte MembershipTypeId { get; set; }
     }
 }
