@@ -921,13 +921,115 @@ bundles.Add(new StyleBundle("~/Content/css").Include(
                "~/Content/site.css"));
 ```
 
-in view table should have id and thead, tbody tags. lastly in script section when document ready:
+in view tables should have id and thead, tbody tags. lastly in script section when document ready:
 
 ```js
 $(document).ready(function () {
             $("#customers").DataTable();
-    /...
+    //...
 }
 ```
 
 #### DataTables with Ajax Source (API)
+
+in jquery datatable call:
+
+```js
+$(document).ready(function () {
+        $("#customers").DataTable({
+            ajax: {
+                url: "/api/customers",
+                dataSrc: ""
+            },
+            columns: [
+                {
+                    data: "name",
+                    render: function (data, type, customer) {
+                        return "<a href='/customers/edit/'" + customer.id + "'>" + customer.name;
+                    }
+                },
+                {
+                    data: "membershipType.name"
+                },
+                {
+                    data: "id",
+                    render: function (data) {
+                        return "<button class='btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
+                    }
+                }
+            ]
+        });
+```
+
+#### Hierarchical Data
+
+step 1: create dto, 
+step 2: add dto to parent dto 
+step 3.map in mapping profile
+step 4: add to controller (._appDbContext.Customers.Include(c=>c.MembershipType).ToList()..) 
+step 5: add to view column like:
+
+
+
+```js
+{
+    data: "membershipType.name"
+},
+```
+
+#### Removing records bug
+
+assign table to variable and use it in remove method:
+
+```html
+    <script>
+        $(document).ready(function () {
+            var table //<--
+            = $("#customers").DataTable({
+                ajax: {
+                    url: "/api/customers",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, customer) {
+                            return "<a href='/customers/edit/'" + customer.id + "'>" + customer.name;
+                        }
+                    },
+                    {
+                        data: "membershipType.name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+
+            $("#customers").on("click", ".js-delete", function () {
+                var button = $(this);
+                bootbox.confirm("Are you sure you want to delete this customer?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/customers/" + button.attr("data-customer-id"),
+                            method: "DELETE",
+                            success: function () {
+                                ///<--- here
+                                table.row(button.parents("tr"))
+                                    .remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+```
+
+#### Section Exercise
+
+<img src="README_assets/sec7-ex.jpg" alt="sec7" style="zoom:60%;" />
