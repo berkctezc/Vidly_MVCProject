@@ -507,6 +507,8 @@ and in controller action add this data annotation:
 
 ## 6 - Web API
 
+#### Bulding the API
+
 in controllers create an web api an add this to global.asax.js:
 
 ```cs
@@ -642,4 +644,179 @@ protected void Application_Start()
 ```
 
 update controller actions:
+
+```cs
+//GET /api/customers
+[HttpGet]
+public IEnumerable<CustomerDto> GetCustomers()
+{
+    return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+}
+```
+
+```cs
+//GET /api/customers/1
+[HttpGet]
+public CustomerDto GetCustomer(int id)
+{
+    var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+ 
+    if (customer == null)
+        throw new HttpResponseException(HttpStatusCode.NotFound);
+ 
+    return Mapper.Map<Customer, CustomerDto>(customer);
+}
+```
+
+```cs
+//POST /api/customers
+[HttpPost]
+public CustomerDto CreateCustomer(CustomerDto customerDto)
+{
+    if (!ModelState.IsValid)
+        throw new HttpResponseException(HttpStatusCode.BadRequest);
+ 
+    var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
+    _context.Customers.Add(customer);
+    _context.SaveChanges();
+ 
+    customerDto.Id = customer.Id;
+ 
+    return customerDto;
+}
+```
+
+```cs
+//PUT /api/customers/1
+[HttpPut]
+public void UpdateCustomer(int id, CustomerDto customerDto)
+{
+    if (!ModelState.IsValid)
+        throw new HttpResponseException(HttpStatusCode.BadRequest);
+ 
+    var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
+ 
+    if (customerInDb == null)
+        throw new HttpResponseException(HttpStatusCode.NotFound);
+ 
+    Mapper.Map(customerDto, customerInDb);
+ 
+ 
+    _context.SaveChanges();
+}
+```
+
+#### Camel Notation
+
+in App_Start WebApiConfig.cs add in register
+
+```cs
+var settings = config.Formatters.JsonFormatter.SerializerSettings;
+         settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+         settings.Formatting = Formatting.Indented;
+```
+
+#### IHttpActionResult
+
+Correct Http results for our actions:
+
+```cs
+//GET /api/customers/1
+[HttpGet]
+public IHttpActionResult GetCustomer(int id)
+{
+    var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+ 
+    if (customer == null)
+        return NotFound();
+ 
+    return Ok(Mapper.Map<Customer, CustomerDto>(customer));
+}
+```
+
+```cs
+//POST /api/customers
+[HttpPost]
+public IHttpActionResult CreateCustomer(CustomerDto customerDto)
+{
+    if (!ModelState.IsValid)
+        return BadRequest();
+ 
+    var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
+    _context.Customers.Add(customer);
+    _context.SaveChanges();
+ 
+    customerDto.Id = customer.Id;
+ 
+    return Created(new Uri(Request.RequestUri+"/"+customer.Id),customerDto);
+}
+```
+
+#### Section Exercise
+
+Postman:
+GET: https://localhost:44362/api/movies 200 OK
+
+```json
+[
+    {
+        "id": 1,
+        "name": "Citizen Kane",
+        "genreId": 3,
+        "dateAdded": "1900-01-01T00:00:00",
+        "releaseDate": "1941-01-01T00:00:00",
+        "numberInStock": 4
+    },
+    {
+        "id": 3,
+        "name": "Rear Window",
+        "genreId": 10,
+        "dateAdded": "1900-01-01T00:00:00",
+        "releaseDate": "1954-01-01T00:00:00",
+        "numberInStock": 3
+    },
+//.......
+]
+```
+
+GET: https://localhost:44362/api/movies/7 200 OK
+
+```json
+{
+    "id": 7,
+    "name": "The Good, the Bad and the Ugly",
+    "genreId": 6,
+    "dateAdded": "1900-01-01T00:00:00",
+    "releaseDate": "1966-01-01T00:00:00",
+    "numberInStock": 1
+}
+```
+
+POST: https://localhost:44362/api/movies 201 Created
+
+```json
+{
+  "name": "Life Is Beautiful",
+  "genreId": 3,
+  "dateAdded": "1900-01-01T00:00:00",
+  "releaseDate": "1997-01-01T00:00:00",
+  "numberInStock": 1
+}
+```
+
+PUT: https://localhost:44362/api/movies/11 204 No Content
+
+```json
+{
+  "name": "Life Is Beautiful",
+  "genreId": 3,
+  "dateAdded": "1900-01-01T00:00:00",
+  "releaseDate": "1997-01-01T00:00:00",
+  "numberInStock": 5
+}
+```
+
+DELETE: https://localhost:44362/api/movies/12 204 No Content
+
+## 7 -
 

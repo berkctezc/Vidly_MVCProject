@@ -154,11 +154,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
+    <Compile Include="Controllers\Api\MoviesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
-    <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
+    <Compile Include="Dtos\MovieDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -217,13 +218,16 @@
     <Compile Include="Migrations\202106052008065_addedRequiredAnnotationsToMovie.designer.cs">
       <DependentUpon>202106052008065_addedRequiredAnnotationsToMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106061241209_ChangesToModel.cs" />
+    <Compile Include="Migrations\202106061241209_ChangesToModel.designer.cs">
+      <DependentUpon>202106061241209_ChangesToModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Min18YearsIfAMember.cs" />
-    <Compile Include="Models\Context.cs" />
-    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\Min18YearsIfAMember.cs" />
+    <Compile Include="Models\AppDbContext.cs" />
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\MembershipType.cs" />
-    <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -458,6 +462,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106052008065_addedRequiredAnnotationsToMovie.resx">
       <DependentUpon>202106052008065_addedRequiredAnnotationsToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106061241209_ChangesToModel.resx">
+      <DependentUpon>202106061241209_ChangesToModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

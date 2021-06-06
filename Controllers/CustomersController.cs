@@ -8,27 +8,27 @@ namespace Vidly_MVCProject.Controllers
 {
     public class CustomersController : Controller
     {
-        private Context _context;
+        private AppDbContext _appDbContext;
 
         public CustomersController()
         {
-            _context = new Context();
+            _appDbContext = new AppDbContext();
         }
 
         protected override void Dispose(bool disposing)
         {
-            _context.Dispose();
+            _appDbContext.Dispose();
         }
 
         public ActionResult Index()
         {
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
+            var customers = _appDbContext.Customers.Include(c => c.MembershipType).ToList();
             return View(customers);
         }
 
         public ActionResult Details(int id)
         {
-            var customer = _context.Customers.Include(c => c.MembershipType).Single(c => c.Id == id);
+            var customer = _appDbContext.Customers.Include(c => c.MembershipType).Single(c => c.Id == id);
 
             if (customer == null)
                 return HttpNotFound();
@@ -38,7 +38,7 @@ namespace Vidly_MVCProject.Controllers
 
         public ActionResult New()
         {
-            var membershipTypes = _context.MembershipTypes.ToList();
+            var membershipTypes = _appDbContext.MembershipTypes.ToList();
 
             var viewModel = new CustomerFormViewModel()
             {
@@ -58,17 +58,16 @@ namespace Vidly_MVCProject.Controllers
                 var viewModel = new CustomerFormViewModel
                 {
                     Customer = customer,
-                    MembershipTypes = _context.MembershipTypes.ToList()
+                    MembershipTypes = _appDbContext.MembershipTypes.ToList()
                 };
                 return View("CustomerForm", viewModel);
             }
 
             if (customer.Id == 0)
-                _context.Customers.Add(customer);
+                _appDbContext.Customers.Add(customer);
             else
             {
-                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
-
+                var customerInDb = _appDbContext.Customers.Single(c => c.Id == customer.Id);
 
                 customerInDb.Name = customer.Name;
                 customerInDb.Birthdate = customer.Birthdate;
@@ -76,14 +75,14 @@ namespace Vidly_MVCProject.Controllers
                 customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
             }
 
-            _context.SaveChanges();
+            _appDbContext.SaveChanges();
 
             return RedirectToAction("Index", "Customers");
         }
 
         public ActionResult Edit(int id)
         {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = _appDbContext.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 return HttpNotFound();
@@ -91,7 +90,7 @@ namespace Vidly_MVCProject.Controllers
             var viewModel = new CustomerFormViewModel()
             {
                 Customer = customer,
-                MembershipTypes = _context.MembershipTypes.ToList()
+                MembershipTypes = _appDbContext.MembershipTypes.ToList()
             };
             return View("CustomerForm", viewModel);
         }

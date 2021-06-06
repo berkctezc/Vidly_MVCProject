@@ -1,8 +1,8 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Vidly_MVCProject.Models
 {
@@ -17,12 +17,9 @@ namespace Vidly_MVCProject.Models
         }
     }
 
-
-
-
-    public class Context : IdentityDbContext<ApplicationUser>
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
-        public Context() : base("Vidly_MVCProject")
+        public AppDbContext() : base("Vidly_MVCProject")
         {
         }
 
@@ -31,9 +28,9 @@ namespace Vidly_MVCProject.Models
         public DbSet<MembershipType> MembershipTypes { get; set; }
         public DbSet<Genre> Genres { get; set; }
 
-        public static Context Create()
+        public static AppDbContext Create()
         {
-            return new Context();
+            return new AppDbContext();
         }
     }
 }

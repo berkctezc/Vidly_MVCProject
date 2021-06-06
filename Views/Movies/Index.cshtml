@@ -12,13 +12,13 @@
 <br />
 
 <table class="table table-borderless">
-    <tr class="danger">
+    <tr class="success">
         <th>Movie List</th>
         <th>Genre</th>
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
+        <tr class="bg-warning">
             <td>
                 @Html.ActionLink(item.Name, "Edit", "Movies", new { id = item.Id }, null)
             </td>

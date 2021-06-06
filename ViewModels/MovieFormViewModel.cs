@@ -34,6 +34,7 @@ namespace Vidly_MVCProject.ViewModels
                 return Id != 0 ? "Edit Movie" : "New Movie";
             }
         }
+
         public MovieFormViewModel()
         {
             Id = 0;
