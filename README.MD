@@ -818,5 +818,82 @@ PUT: https://localhost:44362/api/movies/11 204 No Content
 
 DELETE: https://localhost:44362/api/movies/12 204 No Content
 
-## 7 -
+## 7 - Client-side Development
 
+#### Jquery, Ajax
+
+in view add classes, data and id to items. and at the end script:
+
+```html
+<table id="customers" <--- 
+       class="table table-borderless">
+           <tr class="danger">
+               <th>Customers</th>
+....
+....
+<td>
+    <button data-customer-id="@item.Id" <---
+            class="btn-link js-delete" <---
+            >
+        Delete
+    </button>
+</td>
+.....
+@section scripts{
+    <script>
+        $(document).ready(function() {
+            $("#customers .js-delete").on("click", function () {
+                var button = $(this);
+                if (confirm("sure to delete?")) {
+                    $.ajax({
+                        url: "/api/customers/" + button.attr("data-customer-id"),
+                        method: "DELETE",
+                        success:function() {
+                            alert("success");
+                            button.parents("tr").remove();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}     
+```
+
+#### Bootbox
+
+add in BundleConfig.cs:
+
+```cs
+bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+          "~/Scripts/bootstrap.js",
+          "~/Scripts/bootbox.js", //<--- here
+          "~/Scripts/respond.js"
+          ));
+```
+
+implement in view:
+
+```html
+@section scripts{
+<script>
+    $(document).ready(function () {
+        $("#customers .js-delete").on("click", function () {
+            var button = $(this);
+            bootbox.confirm("sure to delete?", function (result) {
+                if (result) {
+                    $.ajax({
+                        url: "/api/customers/" + button.attr("data-customer-id"),
+                        method: "DELETE",
+                        success: function () {
+                            alert("success");
+                            button.parents("tr").remove();
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
+}
+```
