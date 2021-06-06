@@ -19,7 +19,7 @@ namespace Vidly_MVCProject.Models
 
     public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
-        public AppDbContext() : base("Vidly_MVCProject")
+        public AppDbContext() : base("Vidly_MVCProject", throwIfV1Schema: false)
         {
         }
 
@@ -27,6 +27,7 @@ namespace Vidly_MVCProject.Models
         public DbSet<Movie> Movies { get; set; }
         public DbSet<MembershipType> MembershipTypes { get; set; }
         public DbSet<Genre> Genres { get; set; }
+
 
         public static AppDbContext Create()
         {

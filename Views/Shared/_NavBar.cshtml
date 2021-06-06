@@ -14,8 +14,7 @@
                 <li>@Html.ActionLink("Movies", "Index", "Movies")</li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li>@Html.ActionLink("Register", "Index", "Movies")</li>
-                <li>@Html.ActionLink("Login", "Index", "Movies")</li>
+                @Html.Partial("_LoginPartial")
             </ul>
         </div>
     </div>
