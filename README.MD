@@ -820,7 +820,7 @@ DELETE: https://localhost:44362/api/movies/12 204 No Content
 
 ## 7 - Client-side Development
 
-#### Jquery, Ajax
+#### jQuery, Ajax
 
 in view add classes, data and id to items. and at the end script:
 
@@ -895,5 +895,37 @@ implement in view:
         });
     });
 </script>
+}
+```
+
+#### DataTables
+
+add to bundles:
+(and we merged third party bundles to lib. in _Layout.cshtml -> `@Scripts.Render("~/bundles/lib")`)
+
+```cs
+         bundles.Add(new ScriptBundle("~/bundles/lib").Include(
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/bootbox.js",
+                        "~/Scripts/respond.js",
+                        "~/Scripts/DataTables/jquery.dataTables.js", //<--
+                        "~/Scripts/DataTables/dataTables.bootstrap.js" //<--
+                        ));
+```
+
+```cs
+bundles.Add(new StyleBundle("~/Content/css").Include(
+               "~/Content/bootstrap.css",
+               "~/content/datatables/css/dataTables.bootstrap.css", //<-- style
+               "~/Content/site.css"));
+```
+
+in view table should have id and thead, tbody tags. lastly in script section when document ready:
+
+```js
+$(document).ready(function () {
+            $("#customers").DataTable();
+    /...
 }
 ```
