@@ -929,3 +929,5 @@ $(document).ready(function () {
     /...
 }
 ```
+
+#### DataTables with Ajax Source (API)
