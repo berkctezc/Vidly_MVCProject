@@ -23,6 +23,7 @@ namespace Vidly_MVCProject.Controllers
         public ActionResult Index()
         {
             // var customers = _appDbContext.Customers.Include(c => c.MembershipType).ToList();
+            //now we are returning data from api
             return View();
         }
 
