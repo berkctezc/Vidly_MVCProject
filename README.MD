@@ -609,3 +609,37 @@ public void DeleteCustomer(int id)
     _context.SaveChanges();
 }
 ```
+
+Test with postman
+
+#### Data Transfer Objects
+
+Domain objects that we remove the data we don't want to be changed or shown. Shaped for our needs. Store in Dtos folder
+
+#### AutoMapper (4.1.1)
+
+in App_Start create MappingProfile.cs:
+
+```cs
+public class MappingProfile : Profile
+{
+    public MappingProfile()
+    {
+        Mapper.CreateMap<Customer, CustomerDto>();
+        Mapper.CreateMap<CustomerDto, Customer>();
+    }
+}
+```
+
+add Mapper to Global.asax.cs
+
+```cs
+protected void Application_Start()
+{
+    Mapper.Initialize(c=>c.AddProfile<MappingProfile>());
+    //..
+}
+```
+
+update controller actions:
+

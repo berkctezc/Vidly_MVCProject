@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using AutoMapper;
 
 namespace Vidly_MVCProject
 {
@@ -9,6 +10,7 @@ namespace Vidly_MVCProject
     {
         protected void Application_Start()
         {
+            Mapper.Initialize(c=>c.AddProfile<MappingProfile>());
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
