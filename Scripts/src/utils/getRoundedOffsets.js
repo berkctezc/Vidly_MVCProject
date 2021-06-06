@@ -21,10 +21,10 @@ export default function getRoundedOffsets(data, shouldRound) {
   const { popper, reference } = data.offsets;
   const { round, floor } = Math;
   const noRound = v => v;
-  
+
   const referenceWidth = round(reference.width);
   const popperWidth = round(popper.width);
-  
+
   const isVertical = ['left', 'right'].indexOf(data.placement) !== -1;
   const isVariation = data.placement.indexOf('-') !== -1;
   const sameWidthParity = referenceWidth % 2 === popperWidth % 2;

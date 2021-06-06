@@ -39,7 +39,6 @@ export function taskDebounce(fn) {
 
 const supportsMicroTasks = isBrowser && window.Promise
 
-
 /**
 * Create a debounced version of a method, that's asynchronously deferred
 * but called in the minimum time possible.

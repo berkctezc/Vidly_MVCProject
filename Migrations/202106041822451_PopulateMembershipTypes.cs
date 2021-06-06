@@ -1,6 +1,5 @@
 ﻿namespace Vidly_MVCProject.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
 
     public partial class PopulateMembershipTypes : DbMigration

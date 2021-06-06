@@ -18,5 +18,4 @@ export default function getFixedPositionOffsetParent(element) {
     el = el.parentElement;
   }
   return el || document.documentElement;
-
 }

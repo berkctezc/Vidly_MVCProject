@@ -2,14 +2,14 @@
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Vidly_MVCProject.Models.Context>
+    internal sealed class Configuration : DbMigrationsConfiguration<Vidly_MVCProject.Models.AppDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Vidly_MVCProject.Models.Context context)
+        protected override void Seed(Vidly_MVCProject.Models.AppDbContext appDbContext)
         {
             //  This method will be called after migrating to the latest version.
 
