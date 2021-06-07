@@ -106,13 +106,14 @@ namespace Vidly_MVCProject.Controllers
             return RedirectToAction("Index", "Movies");
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ViewResult Index(int? pageIndex, string sortBy)
         {
-            if (User.IsInRole(RoleName.CanManageMovies))
-                return View("List");
-            return View("ReadOnlyList");
+            //if (User.IsInRole(RoleName.CanManageMovies))
+            return View("List");
 
 
+            //return View("ReadOnlyList");
 
             //var movies = _appDbContext.Movies.Include(m => m.Genre).ToList();
         }

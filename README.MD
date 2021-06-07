@@ -1167,4 +1167,5 @@ public class Rental
 }
 ```
 
-more details on commits.
+more details on commits. (used typeahead, bloodhound for autocomplete)
+

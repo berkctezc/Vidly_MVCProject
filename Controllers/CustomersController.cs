@@ -23,16 +23,8 @@ namespace Vidly_MVCProject.Controllers
             _appDbContext.Dispose();
         }
 
-        [Authorize]
         public ActionResult Index()
         {
-            if (MemoryCache.Default["Genres"] == null)
-            {
-                MemoryCache.Default["Genres"] = _appDbContext.Genres.ToList();
-            }
-
-            var genres = MemoryCache.Default["Genres"] as IEnumerable<Genre>;
-
             // var customers = _appDbContext.Customers.Include(c => c.MembershipType).ToList();
             //now we are returning data from api
             return View();

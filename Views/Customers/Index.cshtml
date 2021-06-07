@@ -39,7 +39,6 @@
             }*@
     </tbody>
 </table>
-
 @section scripts
 {
     <script>
@@ -53,7 +52,7 @@
                     {
                         data: "name",
                         render: function (data, type, customer) {
-                            return "<a href='/customers/edit/'" + customer.id + "'>" + customer.name;
+                            return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>";
                         }
                     },
                     {
@@ -71,14 +70,14 @@
 
             $("#customers").on("click", ".js-delete", function () {
                 var button = $(this);
+
                 bootbox.confirm("Are you sure you want to delete this customer?", function (result) {
                     if (result) {
                         $.ajax({
                             url: "/api/customers/" + button.attr("data-customer-id"),
                             method: "DELETE",
                             success: function () {
-                                table.row(button.parents("tr"))
-                                    .remove().draw();
+                                table.row(button.parents("tr")).remove().draw();
                             }
                         });
                     }
