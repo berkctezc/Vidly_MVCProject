@@ -21,7 +21,6 @@ namespace Vidly_MVCProject.Controllers.Api
 
         //GET /api/movies
         [HttpGet]
-        [Authorize(Roles = RoleName.CanManageMovies)]
         public IEnumerable<MovieDto> GetMovies()
         {
             return _appDbContext.Movies
@@ -32,7 +31,6 @@ namespace Vidly_MVCProject.Controllers.Api
 
         //GET /api/movies/1
         [HttpGet]
-        [Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult GetMovie(int id)
         {
             var movie = _appDbContext.Movies.SingleOrDefault(m => m.Id == id);

@@ -1103,4 +1103,66 @@ add any custom props to external login form and viewmodel. initialize in externa
 
 #### Section Exercise
 
-<img src="README_assets/sec8-ex.jpg" alt="sec8" style="zoom:60%;" />
+<img src="README_assets/sec8-ex.jpg" alt="sec8" style="zoom:65%;" />
+
+## 9 - Performance Optimization
+
+#### Glimpse
+
+in nuget install Glimpse.MVC5 and Glimpse.EF6 
+go to /glimse.axd and enable
+
+#### Caching
+
+**Disable caching:**
+ `[OutputCache(Duration = 0, VaryByParam = "*", NoStore = true)]` 
+
+**Enable caching:**
+
+`[OutputCache(Duration=50,Location=OutputCacheLocation.Server,VaryByParam="genre")]`
+
+#### Data Cache
+
+in controller action
+
+```cs
+if (MemoryCache.Default["Genres"] == null)
+        {
+            MemoryCache.Default["Genres"] = _appDbContext.Genres.ToList();
+        }
+ 
+        var genres = MemoryCache.Default["Genres"] as IEnumerable<Genre>;
+```
+
+#### Disabling Session
+
+in Web.config in system.web
+ <sessionState mode="Off"></sessionState>
+
+## 10 - Building a Feature End to end
+
+we gonna add a renting feature to our app
+Create Dto: NewRentalDto:
+
+```cs
+public class NewRentalDto
+{
+    public int CustomerId { get; set; }
+    public List<int> MovieIds { get; set; }
+}
+```
+
+Create Model: Rental: and add to context
+
+```cs
+public class Rental
+{
+    public int Id { get; set; }
+    [Required]
+    public Customer Customer { get; set; }
+    [Required]
+    public Movie Movie { get; set; }
+    public DateTime DateRented { get; set; }
+    public DateTime? DateReturned { get; set; }
+}
+```
