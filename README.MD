@@ -1099,5 +1099,8 @@ app.UseFacebookAuthentication(
    appSecret: "secret");
 ```
 
-add any custom props to external login form and viewmodel. initizalize in external login controller
+add any custom props to external login form and viewmodel. initialize in external login controller
 
+#### Section Exercise
+
+<img src="README_assets/sec8-ex.jpg" alt="sec8" style="zoom:60%;" />

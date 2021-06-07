@@ -550,6 +550,7 @@
     <Content Include="README_assets\sec4-ex-2.jpg" />
     <Content Include="README_assets\sec4-ex-3.jpg" />
     <Content Include="README_assets\sec7-ex.jpg" />
+    <Content Include="README_assets\sec8-ex.jpg" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
