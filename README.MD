@@ -1040,13 +1040,47 @@ all the logic comes built in (see commit for files and details)
 
 #### Restricting Access
 
-add [Authorize] attribute to controller actions or on top of the controller to restrict all actions
+add **[Authorize]** attribute to controller actions or on top of the controller to restrict all actions
 
-FilterConfig.cs:
+**FilterConfig.cs:**
 
 ```cs
 filters.Add(new AuthorizeAttribute());
 ```
 
 this disables all controllers for unauthorized users
-but you can add [AllowAnonymous] to controllers or actions to enable access
+but you can add **[AllowAnonymous]** to controllers or actions to enable access
+
+**Seeding the database**:
+To keep the consistency of the project on different work scenarios add them to a migration
+
+#### Working with Roles
+
+create separate views for guests and authorized users
+
+in controller:
+
+```cs
+public ViewResult Index(int? pageIndex, string sortBy)
+ {
+     if (User.IsInRole(RoleName.CanManageMovies))
+         return View("List");
+     return View("ReadOnlyList");   
+}
+```
+
+to disable other actions access add this attribute:
+`[Authorize(Roles = RoleName.CanManageMovies)]`
+
+create a model for keeping roles RoleName.cs:
+
+```cs
+public const string CanManageMovies = "CanManageMovies";
+```
+
+#### Adding Profile data
+
+to add custom fields to the user: add the prop to both application user class and viewmodel of the view. also add new prop to register actions assignment section
+
+#### OAuth (Open Authorization) - Social Logins
+

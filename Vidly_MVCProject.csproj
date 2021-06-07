@@ -253,8 +253,17 @@
     <Compile Include="Migrations\202106061241209_ChangesToModel.designer.cs">
       <DependentUpon>202106061241209_ChangesToModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106071122509_SeedUsers.cs" />
+    <Compile Include="Migrations\202106071122509_SeedUsers.designer.cs">
+      <DependentUpon>202106071122509_SeedUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106071159561_AddDrivingLicenseToApplicationUser.cs" />
+    <Compile Include="Migrations\202106071159561_AddDrivingLicenseToApplicationUser.designer.cs">
+      <DependentUpon>202106071159561_AddDrivingLicenseToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Min18YearsIfAMember.cs" />
@@ -269,10 +278,6 @@
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\DefaultConnection.mdf" />
-    <Content Include="App_Data\DefaultConnection_log.ldf">
-      <DependentUpon>DefaultConnection.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\Vidly_MVCProject.Models.Context.mdf" />
     <Content Include="App_Data\Vidly_MVCProject.Models.Context_log.ldf">
       <DependentUpon>Vidly_MVCProject.Models.Context.mdf</DependentUpon>
@@ -730,7 +735,7 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
-    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\List.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Customers\CustomerForm.cshtml" />
@@ -765,6 +770,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Movies\ReadOnlyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
@@ -819,6 +825,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106061241209_ChangesToModel.resx">
       <DependentUpon>202106061241209_ChangesToModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106071122509_SeedUsers.resx">
+      <DependentUpon>202106071122509_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106071159561_AddDrivingLicenseToApplicationUser.resx">
+      <DependentUpon>202106071159561_AddDrivingLicenseToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
