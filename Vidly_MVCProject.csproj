@@ -293,6 +293,10 @@
     <Compile Include="Migrations\202106071706302_addedRentals.designer.cs">
       <DependentUpon>202106071706302_addedRentals.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106071722175_addedNumberAvailableToMovie.cs" />
+    <Compile Include="Migrations\202106071722175_addedNumberAvailableToMovie.designer.cs">
+      <DependentUpon>202106071722175_addedNumberAvailableToMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\ExternalLoginConfirmationViewModel.cs" />
@@ -897,6 +901,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106071706302_addedRentals.resx">
       <DependentUpon>202106071706302_addedRentals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106071722175_addedNumberAvailableToMovie.resx">
+      <DependentUpon>202106071722175_addedNumberAvailableToMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
