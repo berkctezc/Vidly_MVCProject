@@ -1243,7 +1243,17 @@ n Web.config add to `<system.webServer>`
 
 Nuget> Elmah
 
-exception logger. access by /elmah.axd
+exception logger. access by **/elmah.axd**
 
 - by default it saves logs to memory but with a small configuration we could have these exceptions on all kind of databases
 
+- for accessing remotely add this to elmah
+
+  ```xml
+        <authorization>
+          <allow roles="admin,user2,user3,..." />
+          <deny users="*" />  
+        </authorization>
+  ```
+
+**THANKS!!!**
