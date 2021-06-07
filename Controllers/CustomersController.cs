@@ -6,6 +6,7 @@ using Vidly_MVCProject.ViewModels;
 
 namespace Vidly_MVCProject.Controllers
 {
+    [AllowAnonymous]
     public class CustomersController : Controller
     {
         private AppDbContext _appDbContext;
@@ -20,6 +21,7 @@ namespace Vidly_MVCProject.Controllers
             _appDbContext.Dispose();
         }
 
+        [Authorize]
         public ActionResult Index()
         {
             // var customers = _appDbContext.Customers.Include(c => c.MembershipType).ToList();

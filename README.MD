@@ -1033,3 +1033,20 @@ assign table to variable and use it in remove method:
 #### Section Exercise
 
 <img src="README_assets/sec7-ex.jpg" alt="sec7" style="zoom:60%;" />
+
+## 8 - Authentication and Authorization
+
+all the logic comes built in (see commit for files and details)
+
+#### Restricting Access
+
+add [Authorize] attribute to controller actions or on top of the controller to restrict all actions
+
+FilterConfig.cs:
+
+```cs
+filters.Add(new AuthorizeAttribute());
+```
+
+this disables all controllers for unauthorized users
+but you can add [AllowAnonymous] to controllers or actions to enable access
