@@ -1169,3 +1169,81 @@ public class Rental
 
 more details on commits. (used typeahead, bloodhound for autocomplete)
 
+## 11 - Publishing & Deployment
+
+right click and publish
+
+#### Deploying DB
+
+`PM> update-database -script -SourceMigration:SeedUsers`
+
+target mig to last. you got sql query of your db now
+
+#### Build Configurations
+
+1. click solution configurations > configurationManager create a new config
+2. right click to web.config and add config transform
+3. now configure new config
+4. when publishing you could use these configuration to use on the published project
+   note: configs overrides web.config for different scenarios with xdt:...
+   you could preview by right clicking config and selecting preview transform
+
+#### Application Settings
+
+**in Web.config**
+`<appSettings key="value"></appSettings>`
+**or externally create another config file**
+ `<appSettings configSource="AppSettings.config"></appSettings>`
+**use in code like:**
+`ConfigurationManager.AppSettings["Key"]`
+**note:** appsettings always returns strings. you need to convert it for your needs manually
+
+#### Custom Error Pages
+
+###### Exception errors
+in Web.config add to `<system.web>`
+
+```
+  <customErrors mode="On"></customErrors>
+```
+
+**On:** enable everywhere
+**Remote:** disable on localhost
+
+Customize in Views>Shared Error.cshtml
+
+##### Not Found Error (404)
+
+in Web.config add to `<system.web>` > `<customErrors>`
+
+```xml
+  <system.web>
+    <customErrors mode="On">
+      <error statusCode="404" redirect="~/404.html"/>
+    </customErrors>
+      <!--.....-->
+</system.web>
+```
+
+##### IIS Errors
+
+n Web.config add to `<system.webServer>` 
+
+```xml
+    <httpErrors errorMode="Custom">
+      <remove statusCode="404"/>
+      <error statusCode="404" path="404.html" responseMode="File"/>
+    </httpErrors>
+```
+
+**Custom:** enable everywhere
+**DetailedLocalOnly:** disable on localhost
+
+#### Elmah
+
+Nuget> Elmah
+
+exception logger. access by /elmah.axd
+
+- by default it saves logs to memory but with a small configuration we could have these exceptions on all kind of databases
+

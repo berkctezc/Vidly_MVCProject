@@ -49,6 +49,9 @@
     <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -337,10 +340,12 @@
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Vidly_MVCProject.Models.Context.mdf" />
-    <Content Include="App_Data\Vidly_MVCProject.Models.Context_log.ldf">
-      <DependentUpon>Vidly_MVCProject.Models.Context.mdf</DependentUpon>
+    <Content Include="404.html" />
+    <Content Include="App_Data\Vidly_MVCProject.mdf" />
+    <Content Include="App_Data\Vidly_MVCProject_log.ldf">
+      <DependentUpon>Vidly_MVCProject.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-lumen.css" />
@@ -350,59 +355,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.autoFill.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.autoFill.min.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.bootstrap.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.colReorder.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.colReorder.min.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.colVis.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.colvis.jqueryui.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.colVis.min.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.fixedColumns.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.fixedColumns.min.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.fixedHeader.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.fixedHeader.min.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.foundation.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.jqueryui.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.keyTable.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.keyTable.min.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.responsive.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.scroller.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.scroller.min.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.tableTools.css" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.tableTools.min.css" />
-    <Content Include="Content\DataTables-1.10.1\css\jquery.dataTables.css" />
-    <Content Include="Content\DataTables-1.10.1\css\jquery.dataTables.min.css" />
-    <Content Include="Content\DataTables-1.10.1\css\jquery.dataTables_themeroller.css" />
-    <Content Include="Content\DataTables-1.10.1\images\background.png" />
-    <Content Include="Content\DataTables-1.10.1\images\back_disabled.png" />
-    <Content Include="Content\DataTables-1.10.1\images\back_enabled.png" />
-    <Content Include="Content\DataTables-1.10.1\images\back_enabled_hover.png" />
-    <Content Include="Content\DataTables-1.10.1\images\collection.png" />
-    <Content Include="Content\DataTables-1.10.1\images\collection_hover.png" />
-    <Content Include="Content\DataTables-1.10.1\images\copy.png" />
-    <Content Include="Content\DataTables-1.10.1\images\copy_hover.png" />
-    <Content Include="Content\DataTables-1.10.1\images\csv.png" />
-    <Content Include="Content\DataTables-1.10.1\images\csv_hover.png" />
-    <Content Include="Content\DataTables-1.10.1\images\filler.png" />
-    <Content Include="Content\DataTables-1.10.1\images\forward_disabled.png" />
-    <Content Include="Content\DataTables-1.10.1\images\forward_enabled.png" />
-    <Content Include="Content\DataTables-1.10.1\images\forward_enabled_hover.png" />
-    <Content Include="Content\DataTables-1.10.1\images\insert.png" />
-    <Content Include="Content\DataTables-1.10.1\images\loading-background.png" />
-    <Content Include="Content\DataTables-1.10.1\images\pdf.png" />
-    <Content Include="Content\DataTables-1.10.1\images\pdf_hover.png" />
-    <Content Include="Content\DataTables-1.10.1\images\print.png" />
-    <Content Include="Content\DataTables-1.10.1\images\print_hover.png" />
-    <Content Include="Content\DataTables-1.10.1\images\sort_asc.png" />
-    <Content Include="Content\DataTables-1.10.1\images\sort_asc_disabled.png" />
-    <Content Include="Content\DataTables-1.10.1\images\sort_both.png" />
-    <Content Include="Content\DataTables-1.10.1\images\sort_desc.png" />
-    <Content Include="Content\DataTables-1.10.1\images\sort_desc_disabled.png" />
-    <Content Include="Content\DataTables-1.10.1\images\xls.png" />
-    <Content Include="Content\DataTables-1.10.1\images\xls_hover.png" />
-    <Content Include="Content\DataTables-1.10.1\swf\copy_csv_xls.swf" />
-    <Content Include="Content\DataTables-1.10.1\swf\copy_csv_xls_pdf.swf" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap4.css" />
@@ -691,8 +643,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.responsive.scss" />
-    <Content Include="Content\DataTables-1.10.1\css\dataTables.jqueryui.scss" />
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
@@ -795,6 +745,8 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Vidly_MVCProject.mdf" />
+    <Content Include="Vidly_MVCProject_log.ldf" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -850,6 +802,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Movies\ReadOnlyList.cshtml" />
     <Content Include="Views\Rentals\New.cshtml" />
+    <None Include="Web.Testing.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
@@ -928,6 +883,16 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Testing|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
