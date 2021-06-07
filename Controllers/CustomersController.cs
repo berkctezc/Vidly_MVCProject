@@ -1,5 +1,7 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Caching;
 using System.Web.Mvc;
 using Vidly_MVCProject.Models;
 using Vidly_MVCProject.ViewModels;
@@ -24,6 +26,13 @@ namespace Vidly_MVCProject.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            if (MemoryCache.Default["Genres"] == null)
+            {
+                MemoryCache.Default["Genres"] = _appDbContext.Genres.ToList();
+            }
+
+            var genres = MemoryCache.Default["Genres"] as IEnumerable<Genre>;
+
             // var customers = _appDbContext.Customers.Include(c => c.MembershipType).ToList();
             //now we are returning data from api
             return View();
