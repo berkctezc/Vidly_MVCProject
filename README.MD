@@ -1152,7 +1152,7 @@ public class NewRentalDto
 }
 ```
 
-Create Model: Rental: and add to context
+Create Model: Rental, add to context and run a migration
 
 ```cs
 public class Rental
@@ -1166,3 +1166,5 @@ public class Rental
     public DateTime? DateReturned { get; set; }
 }
 ```
+
+more details on commits.
