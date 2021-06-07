@@ -1084,3 +1084,20 @@ to add custom fields to the user: add the prop to both application user class an
 
 #### OAuth (Open Authorization) - Social Logins
 
+enable ssl in properties, add filter
+
+```cs
+filters.Add(new RequireHttpsAttribute());
+```
+
+get AppId and AppSecret from facebook, google ... 
+insert in startup.auth.cs
+
+```cs
+app.UseFacebookAuthentication(
+   appId: "id",
+   appSecret: "secret");
+```
+
+add any custom props to external login form and viewmodel. initizalize in external login controller
+
