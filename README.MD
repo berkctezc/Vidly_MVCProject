@@ -1,4 +1,6 @@
-This is an MVC app developed with .NET Framework for learning purposes
+# ASP.NET MVC5 Project
+
+This is an MVC app developed with .NET Framework 4.8 for learning purposes.
 
 ## 1 - File Structure
 * App_Start: Configuration Files. Loads at application start
