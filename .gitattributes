@@ -63,5 +63,5 @@
 #*.RTF   diff=astextplain
 
 #### LINGUIST CONFIGURATION
-Scripts/* linguist-vendored
-Content/* linguist-vendored
+[Ss]cripts/** linguist-vendored
+[Cc]ontent/** linguist-vendored
