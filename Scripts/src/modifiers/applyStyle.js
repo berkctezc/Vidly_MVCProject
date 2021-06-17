@@ -13,22 +13,22 @@ import computeAutoPlacement from '../utils/computeAutoPlacement';
  * @returns {Object} The same data object
  */
 export default function applyStyle(data) {
-  // any property present in `data.styles` will be applied to the popper,
-  // in this way we can make the 3rd party modifiers add custom styles to it
-  // Be aware, modifiers could override the properties defined in the previous
-  // lines of this modifier!
-  setStyles(data.instance.popper, data.styles);
+    // any property present in `data.styles` will be applied to the popper,
+    // in this way we can make the 3rd party modifiers add custom styles to it
+    // Be aware, modifiers could override the properties defined in the previous
+    // lines of this modifier!
+    setStyles(data.instance.popper, data.styles);
 
-  // any property present in `data.attributes` will be applied to the popper,
-  // they will be set as HTML attributes of the element
-  setAttributes(data.instance.popper, data.attributes);
+    // any property present in `data.attributes` will be applied to the popper,
+    // they will be set as HTML attributes of the element
+    setAttributes(data.instance.popper, data.attributes);
 
-  // if arrowElement is defined and arrowStyles has some properties
-  if (data.arrowElement && Object.keys(data.arrowStyles).length) {
-    setStyles(data.arrowElement, data.arrowStyles);
-  }
+    // if arrowElement is defined and arrowStyles has some properties
+    if (data.arrowElement && Object.keys(data.arrowStyles).length) {
+        setStyles(data.arrowElement, data.arrowStyles);
+    }
 
-  return data;
+    return data;
 }
 
 /**
@@ -42,32 +42,32 @@ export default function applyStyle(data) {
  * @param {Object} options - Popper.js options
  */
 export function applyStyleOnLoad(
-  reference,
-  popper,
-  options,
-  modifierOptions,
-  state
-) {
-  // compute reference element offsets
-  const referenceOffsets = getReferenceOffsets(state, popper, reference, options.positionFixed);
-
-  // compute auto placement, store placement inside the data object,
-  // modifiers will be able to edit `placement` if needed
-  // and refer to originalPlacement to know the original value
-  const placement = computeAutoPlacement(
-    options.placement,
-    referenceOffsets,
-    popper,
     reference,
-    options.modifiers.flip.boundariesElement,
-    options.modifiers.flip.padding
-  );
+    popper,
+    options,
+    modifierOptions,
+    state
+) {
+    // compute reference element offsets
+    const referenceOffsets = getReferenceOffsets(state, popper, reference, options.positionFixed);
 
-  popper.setAttribute('x-placement', placement);
+    // compute auto placement, store placement inside the data object,
+    // modifiers will be able to edit `placement` if needed
+    // and refer to originalPlacement to know the original value
+    const placement = computeAutoPlacement(
+        options.placement,
+        referenceOffsets,
+        popper,
+        reference,
+        options.modifiers.flip.boundariesElement,
+        options.modifiers.flip.padding
+    );
 
-  // Apply `position` to popper before anything else because
-  // without the position applied we can't guarantee correct computations
-  setStyles(popper, { position: options.positionFixed ? 'fixed' : 'absolute' });
+    popper.setAttribute('x-placement', placement);
 
-  return options;
+    // Apply `position` to popper before anything else because
+    // without the position applied we can't guarantee correct computations
+    setStyles(popper, { position: options.positionFixed ? 'fixed' : 'absolute' });
+
+    return options;
 }

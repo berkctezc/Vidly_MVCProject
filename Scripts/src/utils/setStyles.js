@@ -9,16 +9,16 @@ import isNumeric from './isNumeric';
  * Object with a list of properties and values which will be applied to the element
  */
 export default function setStyles(element, styles) {
-  Object.keys(styles).forEach(prop => {
-    let unit = '';
-    // add unit if the value is numeric and is one of the following
-    if (
-      ['width', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !==
-        -1 &&
-      isNumeric(styles[prop])
-    ) {
-      unit = 'px';
-    }
-    element.style[prop] = styles[prop] + unit;
-  });
+    Object.keys(styles).forEach(prop => {
+        let unit = '';
+        // add unit if the value is numeric and is one of the following
+        if (
+            ['width', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !==
+            -1 &&
+            isNumeric(styles[prop])
+        ) {
+            unit = 'px';
+        }
+        element.style[prop] = styles[prop] + unit;
+    });
 }

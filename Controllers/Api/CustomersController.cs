@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -35,7 +34,6 @@ namespace Vidly_MVCProject.Controllers.Api
 
             return Ok(customerDtos);
         }
-
 
         //GET /api/customers/1
         [HttpGet]

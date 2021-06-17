@@ -11,11 +11,11 @@ const isIE10 = isBrowser && /MSIE 10/.test(navigator.userAgent);
  * @returns {Boolean} isIE
  */
 export default function isIE(version) {
-  if (version === 11) {
-    return isIE11;
-  }
-  if (version === 10) {
-    return isIE10;
-  }
-  return isIE11 || isIE10;
+    if (version === 11) {
+        return isIE11;
+    }
+    if (version === 10) {
+        return isIE10;
+    }
+    return isIE11 || isIE10;
 }

@@ -6,6 +6,5 @@ namespace Vidly_MVCProject.Dtos
     {
         public int CustomerId { get; set; }
         public List<int> MovieIds { get; set; }
-        
     }
 }

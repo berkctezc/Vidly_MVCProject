@@ -33,6 +33,6 @@ label.error {
 }
 
 .input-validation-error,
-input.error{
+input.error {
     border: 2px solid red;
 }

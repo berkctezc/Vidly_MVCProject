@@ -4,6 +4,6 @@
  * @returns {Window}
  */
 export default function getWindow(element) {
-  const ownerDocument = element.ownerDocument;
-  return ownerDocument ? ownerDocument.defaultView : window;
+    const ownerDocument = element.ownerDocument;
+    return ownerDocument ? ownerDocument.defaultView : window;
 }

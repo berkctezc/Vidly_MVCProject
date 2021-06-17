@@ -7,7 +7,6 @@
 // @see https://github.com/makeusabrew/bootbox/issues/180
 // @see https://github.com/makeusabrew/bootbox/issues/186
 (function (root, factory) {
-
   "use strict";
   if (typeof define === "function" && define.amd) {
     // AMD. Register as an anonymous module.
@@ -21,9 +20,7 @@
     // Browser globals (root is window)
     root.bootbox = factory(root.jQuery);
   }
-
 }(this, function init($, undefined) {
-
   "use strict";
 
   // the base DOM structure needed to create a modal
@@ -158,7 +155,6 @@
     total = getKeyLength(buttons);
 
     each(buttons, function(key, button, index) {
-
       if ($.isFunction(button)) {
         // short form, assume value is our callback. Since button
         // isn't an object it isn't a reference either so re-assign it
@@ -459,14 +455,12 @@
         }
 
         each(inputOptions, function(_, option) {
-
           // assume the element to attach to is the input...
           var elem = input;
 
           if (option.value === undefined || option.text === undefined) {
             throw new Error("given options in wrong format");
           }
-
 
           // ... but override that element if this option sits in a group
 
@@ -575,7 +569,6 @@
     };
 
     each(buttons, function(key, button) {
-
       // @TODO I don't like this string appending to itself; bit dirty. Needs reworking
       // can we just build up button elements instead? slower but neater. Then button
       // can just become a template too
@@ -623,7 +616,6 @@
       body.after(templates.footer);
       dialog.find(".modal-footer").html(buttonStr);
     }
-
 
     /**
      * Bootstrap event listeners; used handle extra
@@ -676,7 +668,6 @@
       var callbackKey = $(this).data("bb-handler");
 
       processCallback(e, dialog, callbacks[callbackKey]);
-
     });
 
     dialog.on("click", ".bootbox-close-button", function(e) {
@@ -730,7 +721,6 @@
     */
 
     return dialog;
-
   };
 
   exports.setDefaults = function() {
@@ -752,7 +742,6 @@
 
     return exports;
   };
-
 
   /**
    * standard locales. Please add more according to ISO 639-1 standard. Multiple language variants are

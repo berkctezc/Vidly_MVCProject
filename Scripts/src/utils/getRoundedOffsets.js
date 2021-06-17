@@ -18,33 +18,33 @@
  * Only horizontal placement and left/right values need to be considered.
  */
 export default function getRoundedOffsets(data, shouldRound) {
-  const { popper, reference } = data.offsets;
-  const { round, floor } = Math;
-  const noRound = v => v;
+    const { popper, reference } = data.offsets;
+    const { round, floor } = Math;
+    const noRound = v => v;
 
-  const referenceWidth = round(reference.width);
-  const popperWidth = round(popper.width);
+    const referenceWidth = round(reference.width);
+    const popperWidth = round(popper.width);
 
-  const isVertical = ['left', 'right'].indexOf(data.placement) !== -1;
-  const isVariation = data.placement.indexOf('-') !== -1;
-  const sameWidthParity = referenceWidth % 2 === popperWidth % 2;
-  const bothOddWidth = referenceWidth % 2 === 1 && popperWidth % 2 === 1;
+    const isVertical = ['left', 'right'].indexOf(data.placement) !== -1;
+    const isVariation = data.placement.indexOf('-') !== -1;
+    const sameWidthParity = referenceWidth % 2 === popperWidth % 2;
+    const bothOddWidth = referenceWidth % 2 === 1 && popperWidth % 2 === 1;
 
-  const horizontalToInteger = !shouldRound
-    ? noRound
-    : isVertical || isVariation || sameWidthParity
-    ? round
-    : floor;
-  const verticalToInteger = !shouldRound ? noRound : round;
+    const horizontalToInteger = !shouldRound
+        ? noRound
+        : isVertical || isVariation || sameWidthParity
+            ? round
+            : floor;
+    const verticalToInteger = !shouldRound ? noRound : round;
 
-  return {
-    left: horizontalToInteger(
-      bothOddWidth && !isVariation && shouldRound
-        ? popper.left - 1
-        : popper.left
-    ),
-    top: verticalToInteger(popper.top),
-    bottom: verticalToInteger(popper.bottom),
-    right: horizontalToInteger(popper.right),
-  };
+    return {
+        left: horizontalToInteger(
+            bothOddWidth && !isVariation && shouldRound
+                ? popper.left - 1
+                : popper.left
+        ),
+        top: verticalToInteger(popper.top),
+        bottom: verticalToInteger(popper.bottom),
+        right: horizontalToInteger(popper.right),
+    };
 }

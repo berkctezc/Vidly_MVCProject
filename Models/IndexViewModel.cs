@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 
 namespace Vidly_MVCProject.Models
 {

@@ -9,24 +9,24 @@ import getClientRect from './getClientRect';
  * @return {Object} position - Coordinates of the element and its `scrollTop`
  */
 export default function getOffsetRect(element) {
-  let elementRect;
-  if (element.nodeName === 'HTML') {
-    const { width, height } = getWindowSizes(element.ownerDocument);
-    elementRect = {
-      width,
-      height,
-      left: 0,
-      top: 0,
-    };
-  } else {
-    elementRect = {
-      width: element.offsetWidth,
-      height: element.offsetHeight,
-      left: element.offsetLeft,
-      top: element.offsetTop,
-    };
-  }
+    let elementRect;
+    if (element.nodeName === 'HTML') {
+        const { width, height } = getWindowSizes(element.ownerDocument);
+        elementRect = {
+            width,
+            height,
+            left: 0,
+            top: 0,
+        };
+    } else {
+        elementRect = {
+            width: element.offsetWidth,
+            height: element.offsetHeight,
+            left: element.offsetLeft,
+            top: element.offsetTop,
+        };
+    }
 
-  // position
-  return getClientRect(elementRect);
+    // position
+    return getClientRect(elementRect);
 }

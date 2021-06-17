@@ -5,7 +5,7 @@
  * @returns {Boolean}
  */
 export default function isModifierEnabled(modifiers, modifierName) {
-  return modifiers.some(
-    ({ name, enabled }) => enabled && name === modifierName
-  );
+    return modifiers.some(
+        ({ name, enabled }) => enabled && name === modifierName
+    );
 }

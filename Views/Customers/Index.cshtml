@@ -12,8 +12,6 @@
     @Html.ActionLink("New Customer", "New", "Customer", new { @class = "btn btn-primary" })
 </p>
 
-
-
 <table id="customers" class="table table-borderless">
     <thead>
         <tr class="danger">
@@ -66,7 +64,6 @@
                     }
                 ]
             });
-
 
             $("#customers").on("click", ".js-delete", function () {
                 var button = $(this);

@@ -10,8 +10,8 @@ namespace Vidly_MVCProject.Models
 
         [Required]
         [Display(Name = "Driving License")]
-        public string DrivingLicense { get; set; }        
-        
+        public string DrivingLicense { get; set; }
+
         [Required]
         public string Phone { get; set; }
     }

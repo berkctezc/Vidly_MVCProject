@@ -8,8 +8,8 @@ import removeEventListeners from '../utils/removeEventListeners';
  * @memberof Popper
  */
 export default function disableEventListeners() {
-  if (this.state.eventsEnabled) {
-    cancelAnimationFrame(this.scheduleUpdate);
-    this.state = removeEventListeners(this.reference, this.state);
-  }
+    if (this.state.eventsEnabled) {
+        cancelAnimationFrame(this.scheduleUpdate);
+        this.state = removeEventListeners(this.reference, this.state);
+    }
 }

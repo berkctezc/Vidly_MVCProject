@@ -15,7 +15,6 @@ namespace Vidly_MVCProject.Models
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Rental> Rentals { get; set; }
 
-
         public static AppDbContext Create()
         {
             return new AppDbContext();

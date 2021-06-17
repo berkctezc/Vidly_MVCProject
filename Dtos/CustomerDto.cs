@@ -4,7 +4,7 @@ using Vidly_MVCProject.Models;
 
 namespace Vidly_MVCProject.Dtos
 {
-    public class CustomerDto:IDto
+    public class CustomerDto : IDto
     {
         public int Id { get; set; }
 

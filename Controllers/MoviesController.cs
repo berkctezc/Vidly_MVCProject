@@ -112,7 +112,6 @@ namespace Vidly_MVCProject.Controllers
             //if (User.IsInRole(RoleName.CanManageMovies))
             return View("List");
 
-
             //return View("ReadOnlyList");
 
             //var movies = _appDbContext.Movies.Include(m => m.Genre).ToList();

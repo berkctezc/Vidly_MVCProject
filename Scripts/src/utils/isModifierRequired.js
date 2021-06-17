@@ -11,28 +11,28 @@ import find from './find';
  * @returns {Boolean}
  */
 export default function isModifierRequired(
-  modifiers,
-  requestingName,
-  requestedName
+    modifiers,
+    requestingName,
+    requestedName
 ) {
-  const requesting = find(modifiers, ({ name }) => name === requestingName);
+    const requesting = find(modifiers, ({ name }) => name === requestingName);
 
-  const isRequired =
-    !!requesting &&
-    modifiers.some(modifier => {
-      return (
-        modifier.name === requestedName &&
-        modifier.enabled &&
-        modifier.order < requesting.order
-      );
-    });
+    const isRequired =
+        !!requesting &&
+        modifiers.some(modifier => {
+            return (
+                modifier.name === requestedName &&
+                modifier.enabled &&
+                modifier.order < requesting.order
+            );
+        });
 
-  if (!isRequired) {
-    const requesting = `\`${requestingName}\``;
-    const requested = `\`${requestedName}\``;
-    console.warn(
-      `${requested} modifier is required by ${requesting} modifier in order to work, be sure to include it before ${requesting}!`
-    );
-  }
-  return isRequired;
+    if (!isRequired) {
+        const requesting = `\`${requestingName}\``;
+        const requested = `\`${requestedName}\``;
+        console.warn(
+            `${requested} modifier is required by ${requesting} modifier in order to work, be sure to include it before ${requesting}!`
+        );
+    }
+    return isRequired;
 }

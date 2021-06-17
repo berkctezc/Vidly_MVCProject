@@ -14,9 +14,9 @@ const validPlacements = placements.slice(3);
  * @returns {Array} placements including their variations
  */
 export default function clockwise(placement, counter = false) {
-  const index = validPlacements.indexOf(placement);
-  const arr = validPlacements
-    .slice(index + 1)
-    .concat(validPlacements.slice(0, index));
-  return counter ? arr.reverse() : arr;
+    const index = validPlacements.indexOf(placement);
+    const arr = validPlacements
+        .slice(index + 1)
+        .concat(validPlacements.slice(0, index));
+    return counter ? arr.reverse() : arr;
 }

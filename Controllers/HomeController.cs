@@ -6,7 +6,7 @@ namespace Vidly_MVCProject.Controllers
     public class HomeController : Controller
     {
         //disable caching
-        [OutputCache(Duration = 0, VaryByParam = "*", NoStore = true)] 
+        [OutputCache(Duration = 0, VaryByParam = "*", NoStore = true)]
         public ActionResult Index()
         {
             return View();

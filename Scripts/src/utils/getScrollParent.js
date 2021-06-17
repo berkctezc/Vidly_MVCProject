@@ -9,24 +9,24 @@ import getParentNode from './getParentNode';
  * @returns {Element} scroll parent
  */
 export default function getScrollParent(element) {
-  // Return body, `getScroll` will take care to get the correct `scrollTop` from it
-  if (!element) {
-    return document.body
-  }
+    // Return body, `getScroll` will take care to get the correct `scrollTop` from it
+    if (!element) {
+        return document.body
+    }
 
-  switch (element.nodeName) {
-    case 'HTML':
-    case 'BODY':
-      return element.ownerDocument.body
-    case '#document':
-      return element.body
-  }
+    switch (element.nodeName) {
+        case 'HTML':
+        case 'BODY':
+            return element.ownerDocument.body
+        case '#document':
+            return element.body
+    }
 
-  // Firefox want us to check `-x` and `-y` variations as well
-  const { overflow, overflowX, overflowY } = getStyleComputedProperty(element);
-  if (/(auto|scroll|overlay)/.test(overflow + overflowY + overflowX)) {
-    return element;
-  }
+    // Firefox want us to check `-x` and `-y` variations as well
+    const { overflow, overflowX, overflowY } = getStyleComputedProperty(element);
+    if (/(auto|scroll|overlay)/.test(overflow + overflowY + overflowX)) {
+        return element;
+    }
 
-  return getScrollParent(getParentNode(element));
+    return getScrollParent(getParentNode(element));
 }

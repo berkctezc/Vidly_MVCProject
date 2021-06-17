@@ -1,7 +1,7 @@
 import getBoundaries from '../utils/getBoundaries';
 
 function getArea({ width, height }) {
-  return width * height;
+    return width * height;
 }
 
 /**
@@ -14,61 +14,61 @@ function getArea({ width, height }) {
  * @returns {Object} The data object, properly modified
  */
 export default function computeAutoPlacement(
-  placement,
-  refRect,
-  popper,
-  reference,
-  boundariesElement,
-  padding = 0
-) {
-  if (placement.indexOf('auto') === -1) {
-    return placement;
-  }
-
-  const boundaries = getBoundaries(
+    placement,
+    refRect,
     popper,
     reference,
-    padding,
-    boundariesElement
-  );
+    boundariesElement,
+    padding = 0
+) {
+    if (placement.indexOf('auto') === -1) {
+        return placement;
+    }
 
-  const rects = {
-    top: {
-      width: boundaries.width,
-      height: refRect.top - boundaries.top,
-    },
-    right: {
-      width: boundaries.right - refRect.right,
-      height: boundaries.height,
-    },
-    bottom: {
-      width: boundaries.width,
-      height: boundaries.bottom - refRect.bottom,
-    },
-    left: {
-      width: refRect.left - boundaries.left,
-      height: boundaries.height,
-    },
-  };
+    const boundaries = getBoundaries(
+        popper,
+        reference,
+        padding,
+        boundariesElement
+    );
 
-  const sortedAreas = Object.keys(rects)
-    .map(key => ({
-      key,
-      ...rects[key],
-      area: getArea(rects[key]),
-    }))
-    .sort((a, b) => b.area - a.area);
+    const rects = {
+        top: {
+            width: boundaries.width,
+            height: refRect.top - boundaries.top,
+        },
+        right: {
+            width: boundaries.right - refRect.right,
+            height: boundaries.height,
+        },
+        bottom: {
+            width: boundaries.width,
+            height: boundaries.bottom - refRect.bottom,
+        },
+        left: {
+            width: refRect.left - boundaries.left,
+            height: boundaries.height,
+        },
+    };
 
-  const filteredAreas = sortedAreas.filter(
-    ({ width, height }) =>
-      width >= popper.clientWidth && height >= popper.clientHeight
-  );
+    const sortedAreas = Object.keys(rects)
+        .map(key => ({
+            key,
+            ...rects[key],
+            area: getArea(rects[key]),
+        }))
+        .sort((a, b) => b.area - a.area);
 
-  const computedPlacement = filteredAreas.length > 0
-    ? filteredAreas[0].key
-    : sortedAreas[0].key;
+    const filteredAreas = sortedAreas.filter(
+        ({ width, height }) =>
+            width >= popper.clientWidth && height >= popper.clientHeight
+    );
 
-  const variation = placement.split('-')[1];
+    const computedPlacement = filteredAreas.length > 0
+        ? filteredAreas[0].key
+        : sortedAreas[0].key;
 
-  return computedPlacement + (variation ? `-${variation}` : '');
+    const variation = placement.split('-')[1];
+
+    return computedPlacement + (variation ? `-${variation}` : '');
 }

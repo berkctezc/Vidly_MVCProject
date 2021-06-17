@@ -403,7 +403,6 @@
                     previousToast = undefined;
                 }
             }
-
         })();
     });
 }(typeof define === 'function' && define.amd ? define : function (deps, factory) {

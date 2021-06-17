@@ -4,9 +4,9 @@
  * Copyright 2013-2015 Twitter, Inc. and other contributors; Licensed MIT
  */
 
-(function(root, factory) {
+(function (root, factory) {
     if (typeof define === "function" && define.amd) {
-        define("bloodhound", [ "jquery" ], function(a0) {
+        define("bloodhound", ["jquery"], function (a0) {
             return root["Bloodhound"] = factory(a0);
         });
     } else if (typeof exports === "object") {
@@ -14,42 +14,42 @@
     } else {
         root["Bloodhound"] = factory(jQuery);
     }
-})(this, function($) {
-    var _ = function() {
+})(this, function ($) {
+    var _ = function () {
         "use strict";
         return {
-            isMsie: function() {
+            isMsie: function () {
                 return /(msie|trident)/i.test(navigator.userAgent) ? navigator.userAgent.match(/(msie |rv:)(\d+(.\d+)?)/i)[2] : false;
             },
-            isBlankString: function(str) {
+            isBlankString: function (str) {
                 return !str || /^\s*$/.test(str);
             },
-            escapeRegExChars: function(str) {
+            escapeRegExChars: function (str) {
                 return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
             },
-            isString: function(obj) {
+            isString: function (obj) {
                 return typeof obj === "string";
             },
-            isNumber: function(obj) {
+            isNumber: function (obj) {
                 return typeof obj === "number";
             },
             isArray: $.isArray,
             isFunction: $.isFunction,
             isObject: $.isPlainObject,
-            isUndefined: function(obj) {
+            isUndefined: function (obj) {
                 return typeof obj === "undefined";
             },
-            isElement: function(obj) {
+            isElement: function (obj) {
                 return !!(obj && obj.nodeType === 1);
             },
-            isJQuery: function(obj) {
+            isJQuery: function (obj) {
                 return obj instanceof $;
             },
             toStr: function toStr(s) {
                 return _.isUndefined(s) || s === null ? "" : s + "";
             },
             bind: $.proxy,
-            each: function(collection, cb) {
+            each: function (collection, cb) {
                 $.each(collection, reverseArgs);
                 function reverseArgs(index, value) {
                     return cb(value, index);
@@ -57,24 +57,24 @@
             },
             map: $.map,
             filter: $.grep,
-            every: function(obj, test) {
+            every: function (obj, test) {
                 var result = true;
                 if (!obj) {
                     return result;
                 }
-                $.each(obj, function(key, val) {
+                $.each(obj, function (key, val) {
                     if (!(result = test.call(null, val, key, obj))) {
                         return false;
                     }
                 });
                 return !!result;
             },
-            some: function(obj, test) {
+            some: function (obj, test) {
                 var result = false;
                 if (!obj) {
                     return result;
                 }
-                $.each(obj, function(key, val) {
+                $.each(obj, function (key, val) {
                     if (result = test.call(null, val, key, obj)) {
                         return false;
                     }
@@ -82,15 +82,15 @@
                 return !!result;
             },
             mixin: $.extend,
-            identity: function(x) {
+            identity: function (x) {
                 return x;
             },
-            clone: function(obj) {
+            clone: function (obj) {
                 return $.extend(true, {}, obj);
             },
-            getIdGenerator: function() {
+            getIdGenerator: function () {
                 var counter = 0;
-                return function() {
+                return function () {
                     return counter++;
                 };
             },
@@ -100,14 +100,14 @@
                     return String(obj);
                 }
             },
-            defer: function(fn) {
+            defer: function (fn) {
                 setTimeout(fn, 0);
             },
-            debounce: function(func, wait, immediate) {
+            debounce: function (func, wait, immediate) {
                 var timeout, result;
-                return function() {
+                return function () {
                     var context = this, args = arguments, later, callNow;
-                    later = function() {
+                    later = function () {
                         timeout = null;
                         if (!immediate) {
                             result = func.apply(context, args);
@@ -122,15 +122,15 @@
                     return result;
                 };
             },
-            throttle: function(func, wait) {
+            throttle: function (func, wait) {
                 var context, args, timeout, result, previous, later;
                 previous = 0;
-                later = function() {
+                later = function () {
                     previous = new Date();
                     timeout = null;
                     result = func.apply(context, args);
                 };
-                return function() {
+                return function () {
                     var now = new Date(), remaining = wait - (now - previous);
                     context = this;
                     args = arguments;
@@ -145,14 +145,14 @@
                     return result;
                 };
             },
-            stringify: function(val) {
+            stringify: function (val) {
                 return _.isString(val) ? val : JSON.stringify(val);
             },
-            noop: function() {}
+            noop: function () { }
         };
     }();
     var VERSION = "0.11.1";
-    var tokenizers = function() {
+    var tokenizers = function () {
         "use strict";
         return {
             nonword: nonword,
@@ -175,7 +175,7 @@
                 keys = _.isArray(keys) ? keys : [].slice.call(arguments, 0);
                 return function tokenize(o) {
                     var tokens = [];
-                    _.each(keys, function(k) {
+                    _.each(keys, function (k) {
                         tokens = tokens.concat(tokenizer(_.toStr(o[k])));
                     });
                     return tokens;
@@ -183,7 +183,7 @@
             };
         }
     }();
-    var LruCache = function() {
+    var LruCache = function () {
         "use strict";
         function LruCache(maxSize) {
             this.maxSize = _.isNumber(maxSize) ? maxSize : 100;
@@ -239,7 +239,7 @@
                 node.prev ? node.prev.next = node.next : this.head = node.next;
                 node.next ? node.next.prev = node.prev : this.tail = node.prev;
             },
-            moveToFront: function(node) {
+            moveToFront: function (node) {
                 this.remove(node);
                 this.add(node);
             }
@@ -251,7 +251,7 @@
         }
         return LruCache;
     }();
-    var PersistentStorage = function() {
+    var PersistentStorage = function () {
         "use strict";
         var LOCAL_STORAGE;
         try {
@@ -262,23 +262,23 @@
             LOCAL_STORAGE = null;
         }
         function PersistentStorage(namespace, override) {
-            this.prefix = [ "__", namespace, "__" ].join("");
+            this.prefix = ["__", namespace, "__"].join("");
             this.ttlKey = "__ttl__";
             this.keyMatcher = new RegExp("^" + _.escapeRegExChars(this.prefix));
             this.ls = override || LOCAL_STORAGE;
             !this.ls && this._noop();
         }
         _.mixin(PersistentStorage.prototype, {
-            _prefix: function(key) {
+            _prefix: function (key) {
                 return this.prefix + key;
             },
-            _ttlKey: function(key) {
+            _ttlKey: function (key) {
                 return this._prefix(key) + this.ttlKey;
             },
-            _noop: function() {
+            _noop: function () {
                 this.get = this.set = this.remove = this.clear = this.isExpired = _.noop;
             },
-            _safeSet: function(key, val) {
+            _safeSet: function (key, val) {
                 try {
                     this.ls.setItem(key, val);
                 } catch (err) {
@@ -288,13 +288,13 @@
                     }
                 }
             },
-            get: function(key) {
+            get: function (key) {
                 if (this.isExpired(key)) {
                     this.remove(key);
                 }
                 return decode(this.ls.getItem(this._prefix(key)));
             },
-            set: function(key, val, ttl) {
+            set: function (key, val, ttl) {
                 if (_.isNumber(ttl)) {
                     this._safeSet(this._ttlKey(key), encode(now() + ttl));
                 } else {
@@ -302,19 +302,19 @@
                 }
                 return this._safeSet(this._prefix(key), encode(val));
             },
-            remove: function(key) {
+            remove: function (key) {
                 this.ls.removeItem(this._ttlKey(key));
                 this.ls.removeItem(this._prefix(key));
                 return this;
             },
-            clear: function() {
+            clear: function () {
                 var i, keys = gatherMatchingKeys(this.keyMatcher);
-                for (i = keys.length; i--; ) {
+                for (i = keys.length; i--;) {
                     this.remove(keys[i]);
                 }
                 return this;
             },
-            isExpired: function(key) {
+            isExpired: function (key) {
                 var ttl = decode(this.ls.getItem(this._ttlKey(key)));
                 return _.isNumber(ttl) && now() > ttl ? true : false;
             }
@@ -339,7 +339,7 @@
             return keys;
         }
     }();
-    var Transport = function() {
+    var Transport = function () {
         "use strict";
         var pendingRequestsCount = 0, pendingRequests = {}, maxPendingRequests = 6, sharedCache = new LruCache(10);
         function Transport(o) {
@@ -361,7 +361,7 @@
                 o = o || {};
                 return o.url + o.type + $.param(o.data || {});
             },
-            _get: function(o, cb) {
+            _get: function (o, cb) {
                 var that = this, fingerprint, jqXhr;
                 fingerprint = this._fingerprint(o);
                 if (this.cancelled || fingerprint !== this.lastReq) {
@@ -391,7 +391,7 @@
                     }
                 }
             },
-            get: function(o, cb) {
+            get: function (o, cb) {
                 var resp, fingerprint;
                 cb = cb || $.noop;
                 o = _.isString(o) ? {
@@ -406,13 +406,13 @@
                     this._get(o, cb);
                 }
             },
-            cancel: function() {
+            cancel: function () {
                 this.cancelled = true;
             }
         });
         return Transport;
     }();
-    var SearchIndex = window.SearchIndex = function() {
+    var SearchIndex = window.SearchIndex = function () {
         "use strict";
         var CHILDREN = "c", IDS = "i";
         function SearchIndex(o) {
@@ -430,14 +430,14 @@
                 this.datums = o.datums;
                 this.trie = o.trie;
             },
-            add: function(data) {
+            add: function (data) {
                 var that = this;
-                data = _.isArray(data) ? data : [ data ];
-                _.each(data, function(datum) {
+                data = _.isArray(data) ? data : [data];
+                _.each(data, function (datum) {
                     var id, tokens;
                     that.datums[id = that.identify(datum)] = datum;
                     tokens = normalizeTokens(that.datumTokenizer(datum));
-                    _.each(tokens, function(token) {
+                    _.each(tokens, function (token) {
                         var node, chars, ch;
                         node = that.trie;
                         chars = token.split("");
@@ -450,14 +450,14 @@
             },
             get: function get(ids) {
                 var that = this;
-                return _.map(ids, function(id) {
+                return _.map(ids, function (id) {
                     return that.datums[id];
                 });
             },
             search: function search(query) {
                 var that = this, tokens, matches;
                 tokens = normalizeTokens(this.queryTokenizer(query));
-                _.each(tokens, function(token) {
+                _.each(tokens, function (token) {
                     var node, chars, ch, ids;
                     if (matches && matches.length === 0) {
                         return false;
@@ -475,7 +475,7 @@
                         return false;
                     }
                 });
-                return matches ? _.map(unique(matches), function(id) {
+                return matches ? _.map(unique(matches), function (id) {
                     return that.datums[id];
                 }) : [];
             },
@@ -499,10 +499,10 @@
         });
         return SearchIndex;
         function normalizeTokens(tokens) {
-            tokens = _.filter(tokens, function(token) {
+            tokens = _.filter(tokens, function (token) {
                 return !!token;
             });
-            tokens = _.map(tokens, function(token) {
+            tokens = _.map(tokens, function (token) {
                 return token.toLowerCase();
             });
             return tokens;
@@ -542,7 +542,7 @@
             return intersection;
         }
     }();
-    var Prefetch = function() {
+    var Prefetch = function () {
         "use strict";
         var keys;
         keys = {
@@ -587,7 +587,7 @@
                 isExpired = stored.thumbprint !== this.thumbprint || stored.protocol !== location.protocol;
                 return stored.data && !isExpired ? stored.data : null;
             },
-            fromNetwork: function(cb) {
+            fromNetwork: function (cb) {
                 var that = this, settings;
                 if (!cb) {
                     return;
@@ -608,7 +608,7 @@
         });
         return Prefetch;
     }();
-    var Remote = function() {
+    var Remote = function () {
         "use strict";
         function Remote(o) {
             this.url = o.url;
@@ -646,7 +646,7 @@
         });
         return Remote;
     }();
-    var oParser = function() {
+    var oParser = function () {
         "use strict";
         return function parse(o) {
             var defaults, sorter;
@@ -665,7 +665,7 @@
             !o.datumTokenizer && $.error("datumTokenizer is required");
             !o.queryTokenizer && $.error("queryTokenizer is required");
             sorter = o.sorter;
-            o.sorter = sorter ? function(x) {
+            o.sorter = sorter ? function (x) {
                 return x.sort(sorter);
             } : _.identity;
             o.local = _.isFunction(o.local) ? o.local() : o.local;
@@ -785,19 +785,19 @@
                 fn(o, onSuccess, onError);
                 return deferred;
                 function onSuccess(resp) {
-                    _.defer(function() {
+                    _.defer(function () {
                         deferred.resolve(resp);
                     });
                 }
                 function onError(err) {
-                    _.defer(function() {
+                    _.defer(function () {
                         deferred.reject(err);
                     });
                 }
             };
         }
     }();
-    var Bloodhound = function() {
+    var Bloodhound = function () {
         "use strict";
         var old;
         old = window && window.Bloodhound;
@@ -885,8 +885,8 @@
                 return this;
                 function processRemote(remote) {
                     var nonDuplicates = [];
-                    _.each(remote, function(r) {
-                        !_.some(local, function(l) {
+                    _.each(remote, function (r) {
+                        !_.some(local, function (l) {
                             return that.identify(r) === that.identify(l);
                         }) && nonDuplicates.push(r);
                     });
